@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 13 · Projeto Final — Planejamento e Desenvolvimento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="13">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-edit"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 13</p>
+    <h1>Projeto Final — Planejamento e Desenvolvimento</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Definição de escopo e lógica (ou aprimoramento do que já foi feito na Aula 12) e desenvolvimento assistido, passo a passo.</p>
+    <p class="c-note">Pré-requisito: Aula 12 — Oficina Integrada · Temas: IMC, RPG em texto ou Reservas</p>
+  </section>
+
+  <!-- SLIDE ÚNICO: ROTEIRO DO ENCONTRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Projeto Final · Encontro de desenvolvimento</p>
+      <h2 class="h2">Do papel ao programa rodando</h2>
+      <p class="lead">Temas limitados aos três da Aula 12. O objetivo de hoje: escopo fechado e código funcionando em incrementos.</p>
+    </header>
+    <div class="s-body">
+
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h4>Escopo no papel</h4><p>Listar as funções mínimas do tema — o que entra e o que fica para "versão 2".</p></div>
+        <span class="step-dot"></span>
+        <div class="step alt"><div class="n">02</div><h4>Lógica antes do código</h4><p>Entrada → processamento → saída, com decisões, laços e listas anotados.</p></div>
+        <span class="step-dot"></span>
+        <div class="step"><div class="n">03</div><h4>Esqueleto E-P-S</h4><p>Primeira versão executável: input, cálculo central e print — sem enfeites.</p></div>
+        <span class="step-dot"></span>
+        <div class="step alt"><div class="n">04</div><h4>Incrementos + testes</h4><p>Uma função por vez; testar cada acréscimo antes do próximo.</p></div>
+        <span class="step-dot"></span>
+        <div class="step"><div class="n">05</div><h4>Debugging assistido</h4><p>Erros encontrados em aula: traceback, print de inspeção e correção guiada.</p></div>
+      </div>
+
+      <div class="cols-2" style="margin-top:16px">
+        <div class="card dark">
+          <h4 style="color:var(--gold)">Entregável mínimo (checklist)</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Entrada de dados <b>validada</b> (while + try/except)</li>
+            <li>Pelo menos <b>1 repetição</b> e <b>1 decisão composta</b> (if/elif/else)</li>
+            <li>Pelo menos <b>1 lista</b> percorrida com for</li>
+            <li>Saída formatada com f-string</li>
+            <li>Nomes de variáveis claros (snake_case) e comentários no código</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-flex">
+            <span class="ic-dot"><svg class="ic"><use href="#i-bulb"/></svg></span>
+            <div>
+              <h4>Dicas do professor</h4>
+              <p>• Já tem algo da Aula 12? <b>Aprimore</b> em vez de recomeçar.</p>
+              <p style="margin-top:4px">• Quebrou tudo? Volte para a última versão que funcionava e avance em passos menores.</p>
+              <p style="margin-top:4px">• Prepare também <b>uma entrada inválida</b> para demonstrar a validação na apresentação.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:12px;text-align:center;font-size:13px;font-style:italic;color:var(--blue2)">O que não rodar hoje pode rodar amanhã — mas o que não estiver planejado, não roda em dia nenhum.</p>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Apresentação dos Projetos e Encerramento</b>.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 3</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

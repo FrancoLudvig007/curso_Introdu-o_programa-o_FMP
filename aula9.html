@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 09 · Estruturas de Repetição II — for e range()</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="9">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-forward"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 09</p>
+    <h1>Estruturas de Repetição II — for e range()</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">O laço for percorre sequências: iterações de quantidade definida, com a função range() em todas as suas formas.</p>
+    <p class="c-note">Pré-requisito: Aula 08 — Estrutura de Repetição while</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Quando sabemos quantas repetições queremos, existe um caminho mais direto.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-repeat"/></svg></span><div><h4>Do while ao for</h4><p>Cinco repetições garantidas, sem contador manual.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h4>A função range()</h4><p>Uma, duas ou três informações — e o passo negativo.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h4>O limite não é incluído</h4><p>A pegadinha do range(1, 10) que para no 9.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-box"/></svg></span><div><h4>Acumuladores com for</h4><p>Somatórios e a média de 3 notas.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-table"/></svg></span><div><h4>while × for</h4><p>Quando usar cada um.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício: tabuada</h4><p>for + range + multiplicação.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETOMADA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Retomada</p>
+      <h2 class="h2">Do while ao for</h2>
+    </header>
+    <div class="s-body">
+      <div class="quote">Na Aula 08 contamos até 5 com while. <b>Se já sabemos que queremos repetir cinco vezes, existe uma forma mais direta?</b></div>
+      <div class="cols-2" style="margin-top:14px">
+        <div>
+          <span class="code-label">while — controle manual</span>
+          <pre class="code">contador = <span class="n">1</span>
+<span class="k">while</span> contador &lt;= <span class="n">5</span>:
+    <span class="f">print</span>(contador)
+    contador += <span class="n">1</span></pre>
+        </div>
+        <div>
+          <span class="code-label">for — o mesmo resultado</span>
+          <pre class="code"><span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">5</span>):
+    <span class="f">print</span>(numero)
+
+<span class="c"># exibe: 0 1 2 3 4</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR + RANGE(5) -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">O for percorre uma sequência</h2>
+      <p class="lead">range(5) produz os números de 0 a 4 — o bloco executa uma vez para cada valor.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Python</span>
+          <pre class="code"><span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">5</span>):
+    <span class="f">print</span>(numero)</pre>
+        </div>
+        <div class="card">
+          <span class="code-label">Saída</span>
+          <pre class="code">0
+1
+2
+3
+4</pre>
+          <p style="margin-top:10px;font-size:12.5px;color:var(--mut)">A variável <b>numero</b> recebe automaticamente cada valor da sequência — sem incremento manual.</p>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:14px"><b>range(5)</b> começa em <b>0</b> e termina <b>antes de 5</b> — são 5 valores: 0, 1, 2, 3, 4.</div>
+    </div>
+  </section>
+
+  <!-- RANGE 3 FORMAS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">A função range() nas três formas</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <table class="t">
+          <tr><th>Expressão</th><th>Valores produzidos</th></tr>
+          <tr><td><code>range(4)</code></td><td>0, 1, 2, 3</td></tr>
+          <tr><td><code>range(1, 5)</code></td><td>1, 2, 3, 4</td></tr>
+          <tr><td><code>range(2, 10, 2)</code></td><td>2, 4, 6, 8</td></tr>
+          <tr><td><code>range(5, 0, -1)</code></td><td>5, 4, 3, 2, 1</td></tr>
+        </table>
+        <div>
+          <span class="code-label">Passo negativo: contagem regressiva</span>
+          <pre class="code"><span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">5</span>, <span class="n">0</span>, -<span class="n">1</span>):
+    <span class="f">print</span>(numero)
+
+<span class="c"># 5 4 3 2 1 — fogos de artifício!</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">1ª forma: até onde ir · 2ª: de onde a onde · 3ª: + o passo.</p>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:14px">O <b>limite final nunca é incluído</b> — em nenhuma forma.</div>
+    </div>
+  </section>
+
+  <!-- QUANTIDADE DEFINIDA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Repetições com quantidade definida</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">3 tentativas garantidas</span>
+          <pre class="code"><span class="k">for</span> tentativa <span class="k">in</span> <span class="f">range</span>(<span class="n">3</span>):
+    <span class="f">print</span>(<span class="s">"Tentativa"</span>, tentativa + <span class="n">1</span>)</pre>
+          <span class="code-label" style="margin-top:10px">Saída</span>
+          <pre class="code">Tentativa 1
+Tentativa 2
+Tentativa 3</pre>
+        </div>
+        <div class="card">
+          <h4>Por que tentativa + 1?</h4>
+          <p style="margin-top:6px">A contagem interna começa em <b>0</b> (0, 1, 2), mas para o usuário faz mais sentido exibir <b>1, 2, 3</b>.</p>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Somamos 1 apenas na hora de <b>exibir</b> — a lógica do laço permanece natural.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACUMULADOR + MÉDIA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Acumuladores com for — e a média de 3 notas</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Somando de 1 a 5</span>
+          <pre class="code">soma = <span class="n">0</span>
+
+<span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">6</span>):
+    soma = soma + numero
+
+<span class="f">print</span>(<span class="s">"Soma:"</span>, soma)   <span class="c"># 15</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Média de 3 notas — integra tudo!</span>
+          <pre class="code">soma = <span class="n">0</span>
+
+<span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(<span class="n">3</span>):
+    nota = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Digite uma nota: "</span>))
+    soma += nota
+
+media = soma / <span class="n">3</span>
+<span class="f">print</span>(<span class="s">"Média:"</span>, media)</pre>
+        </div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;color:var(--mut)">O laço pede três notas e acumula; a média é calculada <b>após</b> o término do for. O problema-guia do curso, agora elegante.</p>
+    </div>
+  </section>
+
+  <!-- WHILE × FOR -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">while × for: quando usar cada um?</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card">
+          <h4>while</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Repete <b>enquanto</b> uma condição for verdadeira</li>
+            <li>Ideal quando <b>não se sabe</b> quantas repetições serão necessárias</li>
+            <li>Exige atualização manual da variável de controle</li>
+          </ul>
+          <p style="margin-top:6px;font-size:12.5px;color:var(--mut)">Ex.: senha — repete até acertar, não importa quantas tentativas.</p>
+        </div>
+        <div class="card dark">
+          <h4 style="color:var(--gold)">for</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Percorre <b>uma sequência</b> de valores</li>
+            <li>Ideal quando a quantidade <b>é conhecida</b></li>
+            <li>A variável recebe automaticamente cada valor</li>
+          </ul>
+          <p style="margin-top:6px;font-size:12.5px;color:rgba(255,255,255,.7)">Ex.: tabuada, média de 3 notas, contar até 10.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEGADINHA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Cuidado</p>
+      <h2 class="h2">A pegadinha do range(1, 10)</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Errado — a tabuada para no 9</span>
+          <pre class="code"><span class="k">for</span> n <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">10</span>):
+    <span class="f">print</span>(n)
+
+<span class="c"># 1 2 3 ... 9 — faltou o 10!</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Correto — vai até 10</span>
+          <pre class="code"><span class="k">for</span> n <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">11</span>):
+    <span class="f">print</span>(n)
+
+<span class="c"># 1 2 3 ... 10 ✓</span></pre>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px">Para incluir o 10, o limite precisa ser <b>11</b> — porque o fim do range <b>não é incluído</b>.</div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Tabuada</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> repetição controlada + operações aritméticas.</p>
+          <p><b>Tarefa:</b> solicitar um número inteiro e exibir sua tabuada de 1 a 10 usando for e range().</p>
+          <p><b>Mobiliza:</b> input(), int(), for, range(), multiplicação, f-string.</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-search"/></svg></span><div><h5>Identifique o fixo e o variável</h5><p>O número escolhido é fixo; o multiplicador muda a cada volta.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h5>range(1, 11)</h5><p>De 1 até 10 — lembrando que o limite não é incluído.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h5>Formate com f-string</h5><p>f"{numero} x {n} = {numero * n}"</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h5>Teste outro número</h5><p>Digite 7 e confira todas as linhas.</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:11.5px">Digite um número: 7
+
+7 x 1 = 7
+7 x 2 = 14
+...
+7 x 10 = 70</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>for</h4><p>Percorre uma sequência de valores.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>range()</h4><p>Gera sequências — em 1, 2 ou 3 argumentos.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Limite exclusivo</h4><p>O fim do range nunca é incluído.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Passo</h4><p>Controla o intervalo — inclusive negativo.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Quantidade conhecida → for</h4><p>Quantidade desconhecida → while.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Acumuladores</h4><p>Funcionam dentro do for como no while.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Combinação de Estruturas</b>: decisão + repetição, menus e validação.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 13</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

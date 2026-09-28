@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 06 · Estruturas de Decisão</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="6">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-zap"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 06</p>
+    <h1>Estruturas de Decisão</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Condicionais simples e compostas: if, else e elif — programas que escolhem caminhos conforme uma condição.</p>
+    <p class="c-note">Pré-requisito: Aula 05 — Operadores e I/O · Encontro do dia 04/11 (02/11 — Finados — sem aula)</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Do programa que calcula ao programa que decide.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 37 min</span><span class="gold">Exercício · 28 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-search"/></svg></span><div><h4>Retomada: e o desconto?</h4><p>Até agora os programas executavam tudo em sequência.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h4>if e if/else</h4><p>Um caminho, dois caminhos — e o fluxograma da decisão.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h4>if/elif/else</h4><p>Três ou mais caminhos, avaliados de cima para baixo.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h4>O erro de ordem</h4><p>Quando a primeira condição "engole" as demais.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Indentação e blocos</h4><p>O que pertence ao if e o que fica fora.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h4>Exercício: classificação de nota</h4><p>Decisão com três caminhos e valores de fronteira.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETOMADA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Retomada</p>
+      <h2 class="h2">Do cálculo à decisão</h2>
+    </header>
+    <div class="s-body">
+      <div class="quote">Nosso programa de compras calcula o total. Mas… <b>e se quisermos conceder desconto quando o valor passar de um limite?</b></div>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--mut)">Até agora, os programas executaram instruções <b style="color:var(--ink)">em sequência</b>. Uma condição permite <b style="color:var(--ink)">selecionar um caminho</b> — usando os operadores relacionais e lógicos da Aula 05.</p>
+    </div>
+  </section>
+
+  <!-- IF -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">Estrutura if — o caminho único</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Python</span>
+          <pre class="code">idade = <span class="n">20</span>
+
+<span class="k">if</span> idade &gt;= <span class="n">18</span>:
+    <span class="f">print</span>(<span class="s">"Maior de idade"</span>)</pre>
+          <span class="code-label" style="margin-top:10px">Condição falsa → bloco ignorado</span>
+          <pre class="code">idade = <span class="n">16</span>
+
+<span class="k">if</span> idade &gt;= <span class="n">18</span>:
+    <span class="f">print</span>(<span class="s">"Maior de idade"</span>)
+
+<span class="f">print</span>(<span class="s">"Programa encerrado"</span>)</pre>
+        </div>
+        <div class="card">
+          <h4>Anatomia do if</h4>
+          <ul class="b" style="margin-top:6px">
+            <li><code class="inl">if</code> — inicia a condição</li>
+            <li><code class="inl">idade &gt;= 18</code> — expressão avaliada (True/False)</li>
+            <li><code class="inl">:</code> — indica o início do bloco</li>
+            <li><b>Indentação</b> — identifica as instruções do bloco</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Saída do segundo exemplo: apenas <b>Programa encerrado</b> — o print indentado não executa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IF/ELSE -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Estrutura if/else — dois caminhos</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Python</span>
+          <pre class="code">idade = <span class="f">int</span>(<span class="f">input</span>(<span class="s">"Digite sua idade: "</span>))
+
+<span class="k">if</span> idade &gt;= <span class="n">18</span>:
+    <span class="f">print</span>(<span class="s">"Maior de idade"</span>)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"Menor de idade"</span>)</pre>
+        </div>
+        <div class="card">
+          <h4>Fluxo da decisão</h4>
+          <pre class="code" style="margin-top:6px">        idade &gt;= 18?
+           /      \
+         Sim      Não
+          |        |
+    Maior de   Menor de
+     idade      idade</pre>
+          <p style="margin-top:8px"><b>Pergunta:</b> se a idade for exatamente 18, qual caminho executa? Por quê?</p>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--mut)">O bloco <b>if</b> roda quando a condição é verdadeira; o <b>else</b>, quando é falsa. <code class="inl">&gt;=</code> inclui o limite — 18 é "maior ou igual".</p>
+    </div>
+  </section>
+
+  <!-- ELIF -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Estrutura if/elif/else — três ou mais caminhos</h2>
+      <p class="lead">As condições são verificadas de cima para baixo. Quando uma é verdadeira, seu bloco executa e as demais são ignoradas.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Classificar uma nota</span>
+          <pre class="code">nota = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Digite a nota: "</span>))
+
+<span class="k">if</span> nota &gt;= <span class="n">7</span>:
+    <span class="f">print</span>(<span class="s">"Aprovado"</span>)
+<span class="k">elif</span> nota &gt;= <span class="n">5</span>:
+    <span class="f">print</span>(<span class="s">"Recuperação"</span>)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"Reprovado"</span>)</pre>
+        </div>
+        <div class="card">
+          <h4>Como o Python lê</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Nota 8.5 → 1ª condição verdadeira → <b>Aprovado</b></li>
+            <li>Nota 6.0 → 1ª falsa, 2ª verdadeira → <b>Recuperação</b></li>
+            <li>Nota 4.5 → todas falsas → <b>Reprovado</b></li>
+          </ul>
+          <div class="warn" style="margin-top:10px">A <b>ordem</b> das condições é decisiva — veja o próximo slide.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERRO DE ORDEM -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Cuidado</p>
+      <h2 class="h2">O erro de ordem das condições</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Errado — para nota 9</span>
+          <pre class="code">nota = <span class="n">9</span>
+
+<span class="k">if</span> nota &gt;= <span class="n">5</span>:
+    <span class="f">print</span>(<span class="s">"Recuperação"</span>)   <span class="c"># executa aqui!</span>
+<span class="k">elif</span> nota &gt;= <span class="n">7</span>:
+    <span class="f">print</span>(<span class="s">"Aprovado"</span>)      <span class="c"># nunca chega</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">A condição <code class="inl">nota &gt;= 5</code> já é verdadeira para 9. O bloco dela roda primeiro e o resto é ignorado.</p>
+        </div>
+        <div>
+          <span class="code-label">Correto — do mais restritivo ao mais amplo</span>
+          <pre class="code">nota = <span class="n">9</span>
+
+<span class="k">if</span> nota &gt;= <span class="n">7</span>:
+    <span class="f">print</span>(<span class="s">"Aprovado"</span>)
+<span class="k">elif</span> nota &gt;= <span class="n">5</span>:
+    <span class="f">print</span>(<span class="s">"Recuperação"</span>)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"Reprovado"</span>)</pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">O programa não "entende a intenção": executa as condições <b>na ordem escrita</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDENTAÇÃO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Boa prática</p>
+      <h2 class="h2">Indentação e blocos de código</h2>
+      <p class="lead">Em Python, a indentação define quais instruções pertencem a cada bloco.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">O que pertence ao if?</span>
+          <pre class="code">idade = <span class="n">20</span>
+
+<span class="k">if</span> idade &gt;= <span class="n">18</span>:
+    <span class="f">print</span>(<span class="s">"Maior de idade"</span>)
+    <span class="f">print</span>(<span class="s">"Pode seguir para a próxima etapa"</span>)
+
+<span class="f">print</span>(<span class="s">"Fim"</span>)</pre>
+        </div>
+        <div class="card">
+          <h4>Leitura</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Os dois primeiros print() estão <b>dentro</b> do if (indentados)</li>
+            <li>O último print() está <b>fora</b> — executa sempre</li>
+            <li>Indentação errada pode causar erro de sintaxe <b>ou alterar a lógica</b></li>
+          </ul>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Padrão da comunidade: 4 espaços por nível de indentação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Classificação de nota</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> decisão com três caminhos.</p>
+          <p><b>Tarefa:</b> receber a nota de um estudante e informar <b>Aprovado</b> (≥ 7), <b>Recuperação</b> (entre 5 e 6,99) ou <b>Reprovado</b> (&lt; 5).</p>
+          <p><b>Mobiliza:</b> input(), float(), operadores relacionais, if/elif/else, print().</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-map"/></svg></span><div><h5>Defina os intervalos antes de programar</h5><p>Escrever as faixas no papel evita o erro de ordem.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h5>Comece pela aprovação</h5><p>Da condição mais restritiva para a mais ampla.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h5>Teste as fronteiras</h5><p>Execute com 7, 5 e 4.9 — os valores que separam os caminhos.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h5>Confira a indentação</h5><p>Cada print dentro do seu bloco.</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:12px">Nota: 8.5   → Resultado: Aprovado
+Nota: 6.0   → Resultado: Recuperação
+Nota: 4.5   → Resultado: Reprovado</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Condições</h4><p>Permitem selecionar caminhos de execução.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Operadores relacionais</h4><p>Produzem resultados lógicos (True/False).</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>if / else / elif</h4><p>Um, dois ou vários caminhos — avaliados de cima para baixo.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Ordem das condições</h4><p>Do mais restritivo ao mais amplo.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Indentação</h4><p>Define os blocos em Python.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Valores de fronteira</h4><p>Sempre testar os limites dos intervalos.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Depuração e Tratamento de Erros</b>: quando algo sai do plano, como encontrar e corrigir.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 12</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

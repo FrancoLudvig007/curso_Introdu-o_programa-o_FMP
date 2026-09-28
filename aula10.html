@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 10 · Combinação de Estruturas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="10">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-sitemap"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 10</p>
+    <h1>Combinação de Estruturas</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Decisão + repetição: validação de entrada, menus interativos e laços aninhados — as estruturas trabalhando juntas.</p>
+    <p class="c-note">Pré-requisito: Aula 09 — for e range()</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Programas reais combinam tudo o que aprendemos até aqui.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h4>if dentro do for</h4><p>Exibir apenas os números pares.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><div><h4>Acumular com condição</h4><p>Somar só os que atendem ao critério.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h4>Contar ocorrências</h4><p>Quantas vezes a condição foi verdadeira.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-shield"/></svg></span><div><h4>Validação de entrada</h4><p>while + try/except até o dado ser válido.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-menu"/></svg></span><div><h4>Menu interativo</h4><p>while + if/elif — e laços aninhados.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício: soma dos pares</h4><p>Integração completa até um limite.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IF DENTRO DO FOR -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">Condição dentro de um laço</h2>
+      <p class="lead">O for fornece os valores; o if decide quais recebem tratamento especial.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Pares de 1 a 10</span>
+          <pre class="code"><span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">11</span>):
+    <span class="k">if</span> numero % <span class="n">2</span> == <span class="n">0</span>:
+        <span class="f">print</span>(numero)</pre>
+          <span class="code-label" style="margin-top:10px">Saída</span>
+          <pre class="code">2
+4
+6
+8
+10</pre>
+        </div>
+        <div class="card">
+          <h4>Como o Python executa</h4>
+          <ol style="margin:6px 0 0 20px;font-size:13.5px;line-height:1.9;color:var(--txt)">
+            <li>O for fornece um número</li>
+            <li>O if verifica o resto da divisão por 2</li>
+            <li>Resto 0 → o número é exibido</li>
+            <li>O laço recebe o próximo número</li>
+          </ol>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">O truque do % da Aula 05, agora dentro do laço.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACUMULAR CONDICIONAL -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Acumular apenas os que atendem à condição</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Somar só os pares</span>
+          <pre class="code">soma = <span class="n">0</span>
+
+<span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">11</span>):
+    <span class="k">if</span> numero % <span class="n">2</span> == <span class="n">0</span>:
+        soma += numero
+
+<span class="f">print</span>(<span class="s">"Soma dos pares:"</span>, soma)</pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)"><b>Saída: 30</b> — a soma só é atualizada quando a condição é verdadeira.</p>
+        </div>
+        <div>
+          <span class="code-label">Contar ocorrências — divisíveis por 3</span>
+          <pre class="code">quantidade = <span class="n">0</span>
+
+<span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">21</span>):
+    <span class="k">if</span> numero % <span class="n">3</span> == <span class="n">0</span>:
+        quantidade += <span class="n">1</span>
+
+<span class="f">print</span>(<span class="s">"Quantidade:"</span>, quantidade)   <span class="c"># 6</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)"><b>Contador</b> soma sempre 1; <b>acumulador</b> soma valores que variam.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALIDAÇÃO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Validação de entrada: while + try/except</h2>
+      <p class="lead">A Aula 07 avisou sobre o erro; agora o programa <b>insiste</b> até receber um dado válido.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Repetir até a conversão funcionar</span>
+          <pre class="code">valido = <span class="k">False</span>
+
+<span class="k">while</span> <span class="k">not</span> valido:
+    <span class="k">try</span>:
+        idade = <span class="f">int</span>(<span class="f">input</span>(<span class="s">"Digite sua idade: "</span>))
+        valido = <span class="k">True</span>
+    <span class="k">except</span> ValueError:
+        <span class="f">print</span>(<span class="s">"Entrada inválida. Digite apenas números."</span>)
+
+<span class="f">print</span>(<span class="s">"Idade registrada:"</span>, idade)</pre>
+        </div>
+        <div class="card">
+          <h4>Como funciona</h4>
+          <ul class="b" style="margin-top:6px">
+            <li><b>valido</b> é uma "bandeira": começa falsa</li>
+            <li>Conversão bem-sucedida → a bandeira vira True → o laço termina</li>
+            <li>ValueError → o except avisa → o laço repete</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">O programa só segue adiante com um dado confiável — sem quebrar nunca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Menu interativo: while + if/elif</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Programa bancário simples</span>
+          <pre class="code">opcao = <span class="s">""</span>
+
+<span class="k">while</span> opcao != <span class="s">"4"</span>:
+    <span class="f">print</span>(<span class="s">"1 - Saldo | 2 - Depositar"</span>)
+    <span class="f">print</span>(<span class="s">"3 - Sacar  | 4 - Sair"</span>)
+    opcao = <span class="f">input</span>(<span class="s">"Escolha: "</span>)
+
+    <span class="k">if</span> opcao == <span class="s">"1"</span>:
+        <span class="f">print</span>(<span class="s">"Saldo: R$ 100.00"</span>)
+    <span class="k">elif</span> opcao == <span class="s">"2"</span>:
+        <span class="f">print</span>(<span class="s">"Depósito realizado."</span>)
+    <span class="k">elif</span> opcao == <span class="s">"3"</span>:
+        <span class="f">print</span>(<span class="s">"Saque realizado."</span>)
+    <span class="k">elif</span> opcao == <span class="s">"4"</span>:
+        <span class="f">print</span>(<span class="s">"Até logo!"</span>)
+    <span class="k">else</span>:
+        <span class="f">print</span>(<span class="s">"Opção inválida."</span>)</pre>
+        </div>
+        <div class="card">
+          <h4>Leitura do programa</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>O menu é exibido <b>a cada volta</b> do while</li>
+            <li>A opção "4" encerra — a condição do laço</li>
+            <li>O else final captura opções inexistentes</li>
+            <li>É assim que funcionam sistemas com telas e opções</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANINHADOS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Laços aninhados: for dentro de for</h2>
+      <p class="lead">Um laço externo controla as rodadas; um interno percorre tudo dentro de cada rodada.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Tabuadas de 1 a 3</span>
+          <pre class="code"><span class="k">for</span> tab <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">4</span>):
+    <span class="f">print</span>(<span class="s">f"Tabuada do {tab}"</span>)
+    <span class="k">for</span> n <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">11</span>):
+        <span class="f">print</span>(<span class="s">f"{tab} x {n} = {tab * n}"</span>)
+    <span class="f">print</span>()   <span class="c"># linha em branco entre tabuadas</span></pre>
+        </div>
+        <div class="card">
+          <h4>Como lê</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>O laço <b>externo</b> escolhe a tabuada (1, depois 2, depois 3)</li>
+            <li>Para cada tabuada, o laço <b>interno</b> completa o 1 ao 10</li>
+            <li>O print() vazio separa visualmente as tabuadas</li>
+          </ul>
+          <div class="warn" style="margin-top:10px">A <b>indentação</b> define quem está dentro de quem — dois níveis de recuo = dois níveis de laço.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ERROS COMUNS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Cuidado</p>
+      <h2 class="h2">Dois erros clássicos em estruturas combinadas</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">1 · Acumulador inicializado DENTRO do laço</span>
+          <pre class="code"><span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">6</span>):
+    soma = <span class="n">0</span>      <span class="c"># zera a cada volta!</span>
+    soma += numero
+
+<span class="f">print</span>(soma)        <span class="c"># 5 — só o último</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">A variável é reiniciada a cada repetição. O resultado não é a soma de todos.</p>
+        </div>
+        <div>
+          <span class="code-label">Correção — inicializar ANTES</span>
+          <pre class="code">soma = <span class="n">0</span>           <span class="c"># antes do laço ✓</span>
+
+<span class="k">for</span> numero <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">6</span>):
+    soma += numero
+
+<span class="f">print</span>(soma)        <span class="c"># 15 ✓</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Contadores e acumuladores que precisam <b>preservar o resultado</b> entre as voltas nascem fora do laço.</p>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;font-style:italic;color:var(--blue2)">Lembre também: um print "desindentado" dentro de um for/if muda completamente o que ele executa.</p>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Soma dos pares até um limite</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> integrar repetição, condição e acumulador.</p>
+          <p><b>Tarefa:</b> solicitar um número inteiro positivo e somar todos os pares de 1 até esse número; exibir a soma ao final.</p>
+          <p><b>Mobiliza:</b> input(), int(), for, range(), if, %, acumulador.</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-map"/></svg></span><div><h5>Defina o intervalo</h5><p>De 1 até o limite — lembrando do +1 no range.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><div><h5>Filtre com % 2</h5><p>Só some quando o resto for zero.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-box"/></svg></span><div><h5>Soma começa em zero, fora do laço</h5><p>Ela acumula entre as voltas.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h5>Teste com 6 e com 1</h5><p>Com limite 1 não há pares: a soma fica 0 — e está correto!</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:12px">Digite um limite: 10
+Soma dos números pares: 30</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Laço + condição</h4><p>Um if dentro do for seleciona os valores processados.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Contar × acumular</h4><p>O contador soma 1; o acumulador soma valores variados.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Validação de entrada</h4><p>while + try/except insiste até o dado ser válido.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Menu interativo</h4><p>while + if/elif — a base de sistemas com opções.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Laços aninhados</h4><p>Indentação em dois níveis: laço dentro de laço.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Posição da inicialização</h4><p>Acumulador dentro do laço zera a cada volta.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Listas</b>: guardar muitos valores em uma única variável.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 12</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

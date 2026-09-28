@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 05 · Operadores e Entrada, Processamento e Saída</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="5">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-percent"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 05</p>
+    <h1>Operadores e Entrada, Processamento e Saída</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Receber dados com input(), converter quando necessário, calcular com operadores e apresentar resultados organizados.</p>
+    <p class="c-note">Pré-requisito: Aula 04 — Variáveis e Tipos de Dados</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Dos cálculos manuais à primeira conversa do programa com o usuário.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><div><h4>Operadores aritméticos</h4><p>As sete operações — e a dupla / vs //.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-grid"/></svg></span><div><h4>Operadores relacionais e lógicos</h4><p>Comparações e combinações: and, or, not.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-comment"/></svg></span><div><h4>Entrada com input()</h4><p>Tudo que o usuário digita chega como texto.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h4>Conversão de tipos</h4><p>int(), float() e str() antes de calcular.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-monitor"/></svg></span><div><h4>Saída com print() e f-strings</h4><p>Montar mensagens com valores dentro do texto.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício: calculadora de compra</h4><p>O ciclo completo entrada → processamento → saída.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRÊS FAMÍLIAS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Retomada · Panorama</p>
+      <h2 class="h2">Três famílias de operadores</h2>
+      <p class="lead">Já sabemos guardar informações. Agora precisamos fazer algo com elas: calcular, comparar, decidir.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-3">
+        <div class="card card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><h4 style="margin-top:8px">Aritméticos</h4><p>Cálculos: <code class="inl">+ - * / // % **</code> — hoje.</p></div>
+        <div class="card dark card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><h4 style="margin-top:8px">Relacionais</h4><p>Comparações: <code class="inl" style="background:rgba(255,255,255,.12);color:#fff">== != &gt; &lt; &gt;= &lt;=</code> — hoje.</p></div>
+        <div class="card card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><h4 style="margin-top:8px">Lógicos</h4><p>Combinam condições: <code class="inl">and or not</code> — hoje, aplicados na Aula 06.</p></div>
+      </div>
+      <div class="card dark" style="margin-top:14px"><p><b>Problema guia:</b> calcular o valor total de uma compra a partir da quantidade e do preço unitário.</p></div>
+    </div>
+  </section>
+
+  <!-- ARITMÉTICOS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">Operadores aritméticos</h2>
+      <p class="lead">Com a = 8 e b = 3, cada operação produz:</p>
+    </header>
+    <div class="s-body">
+      <table class="t big">
+        <tr><th>Operador</th><th>Operação</th><th>Exemplo</th><th>Resultado</th></tr>
+        <tr><td><code>+</code></td><td>Adição</td><td><code>8 + 3</code></td><td><code>11</code></td></tr>
+        <tr><td><code>-</code></td><td>Subtração</td><td><code>8 - 3</code></td><td><code>5</code></td></tr>
+        <tr><td><code>*</code></td><td>Multiplicação</td><td><code>8 * 3</code></td><td><code>24</code></td></tr>
+        <tr><td><code>/</code></td><td>Divisão</td><td><code>8 / 3</code></td><td><code>2.666...</code></td></tr>
+        <tr><td><code>//</code></td><td>Divisão inteira</td><td><code>8 // 3</code></td><td><code>2</code></td></tr>
+        <tr><td><code>%</code></td><td>Resto da divisão</td><td><code>8 % 3</code></td><td><code>2</code></td></tr>
+        <tr><td><code>**</code></td><td>Potenciação</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- / VS // E % -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1 · continuação</p>
+      <h2 class="h2">/ vs // e o truque do %</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Divisão comum × divisão inteira</span>
+          <pre class="code">a = <span class="n">8</span>
+b = <span class="n">3</span>
+
+<span class="f">print</span>(a / b)    <span class="c"># 2.666...  preserva decimais</span>
+<span class="f">print</span>(a // b)   <span class="c"># 2         descarta a fração</span></pre>
+        </div>
+        <div>
+          <span class="code-label">% — o resto indica paridade</span>
+          <pre class="code">numero = <span class="n">10</span>
+
+<span class="f">print</span>(numero % <span class="n">2</span>)   <span class="c"># 0 → resto zero</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Se o resto da divisão por 2 é 0, o número é <b>par</b>. Esse truque será a base para filtrar pares na Aula 10.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELACIONAIS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Operadores relacionais</h2>
+      <p class="lead">Comparam dois valores e produzem um resultado lógico: True ou False.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <table class="t">
+          <tr><th>Operador</th><th>Significado</th></tr>
+          <tr><td><code>==</code></td><td>Igual a</td></tr>
+          <tr><td><code>!=</code></td><td>Diferente de</td></tr>
+          <tr><td><code>&gt;</code></td><td>Maior que</td></tr>
+          <tr><td><code>&lt;</code></td><td>Menor que</td></tr>
+          <tr><td><code>&gt;=</code></td><td>Maior ou igual a</td></tr>
+          <tr><td><code>&lt;=</code></td><td>Menor ou igual a</td></tr>
+        </table>
+        <div>
+          <span class="code-label">Exemplos</span>
+          <pre class="code"><span class="f">print</span>(<span class="n">10</span> &gt; <span class="n">5</span>)    <span class="c"># True</span>
+<span class="f">print</span>(<span class="n">10</span> == <span class="n">5</span>)   <span class="c"># False</span>
+<span class="f">print</span>(<span class="n">10</span> != <span class="n">5</span>)   <span class="c"># True</span>
+<span class="f">print</span>(<span class="n">7</span> &gt;= <span class="n">7</span>)    <span class="c"># True — o limite inclui!</span></pre>
+          <div class="warn" style="margin-top:10px"><b>=</b> atribui · <b>==</b> compara. Nunca confunda.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LÓGICOS + TABELAS VERDADE -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Operadores lógicos: and, or, not</h2>
+      <p class="lead">Combinam ou invertem condições — a tabela-verdade resume todo o comportamento.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <table class="t big">
+          <tr><th>A</th><th>B</th><th>A and B</th><th>A or B</th></tr>
+          <tr><td>True</td><td>True</td><td class="hl">True</td><td class="hl">True</td></tr>
+          <tr><td>True</td><td>False</td><td>False</td><td class="hl">True</td></tr>
+          <tr><td>False</td><td>True</td><td>False</td><td class="hl">True</td></tr>
+          <tr><td>False</td><td>False</td><td>False</td><td>False</td></tr>
+        </table>
+        <div>
+          <div class="card" style="margin-bottom:10px">
+            <p><b>and</b> — verdadeiro somente se <b>ambas</b> forem verdadeiras</p>
+            <p style="margin-top:4px"><b>or</b> — verdadeiro se <b>pelo menos uma</b> for verdadeira</p>
+            <p style="margin-top:4px"><b>not</b> — inverte: <code class="inl">not True → False</code></p>
+          </div>
+          <pre class="code"><span class="c"># leitura natural:</span>
+<span class="c"># "nota >= 7 E frequência >= 75"</span>
+nota &gt;= <span class="n">7</span> <span class="k">and</span> frequencia &gt;= <span class="n">75</span></pre>
+        </div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;font-style:italic;color:var(--blue2)">Esses operadores ganham uso prático na próxima aula, dentro das estruturas de decisão.</p>
+    </div>
+  </section>
+
+  <!-- PRECEDÊNCIA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Ordem das operações</h2>
+      <p class="lead">Python respeita a precedência: multiplicação antes da adição.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Sem parênteses</span>
+          <pre class="code">resultado = <span class="n">2</span> + <span class="n">3</span> * <span class="n">4</span>
+<span class="f">print</span>(resultado)   <span class="c"># 14</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Com parênteses</span>
+          <pre class="code">resultado = (<span class="n">2</span> + <span class="n">3</span>) * <span class="n">4</span>
+<span class="f">print</span>(resultado)   <span class="c"># 20</span></pre>
+        </div>
+      </div>
+      <p class="quote" style="margin-top:14px">O computador executa conforme as regras da linguagem. Quando queremos destacar uma parte do cálculo, usamos <b>parênteses</b>.</p>
+    </div>
+  </section>
+
+  <!-- INPUT -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Entrada de dados com input()</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Python</span>
+          <pre class="code">nome = <span class="f">input</span>(<span class="s">"Digite seu nome: "</span>)
+<span class="f">print</span>(<span class="s">"Olá,"</span>, nome)
+
+idade = <span class="f">input</span>(<span class="s">"Digite sua idade: "</span>)
+<span class="f">print</span>(<span class="f">type</span>(idade))   <span class="c"># &lt;class 'str'&gt;</span></pre>
+        </div>
+        <div class="card dark">
+          <h4 style="color:var(--gold)">O ponto-chave</h4>
+          <p>input() pausa o programa, lê o teclado e devolve o valor… <b>sempre como texto (str)</b>.</p>
+          <p style="margin-top:8px">Mesmo que o usuário digite 20, o valor chega como <b>"20"</b> — texto, não número.</p>
+          <p style="margin-top:8px">Para calcular, precisamos converter — próximo passo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSÃO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 6</p>
+      <h2 class="h2">Conversão de tipos</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <table class="t">
+          <tr><th>Função</th><th>Converte para</th></tr>
+          <tr><td><code>int()</code></td><td>Inteiro, quando possível</td></tr>
+          <tr><td><code>float()</code></td><td>Número decimal</td></tr>
+          <tr><td><code>str()</code></td><td>Texto</td></tr>
+        </table>
+        <div>
+          <span class="code-label">Convertendo antes de calcular</span>
+          <pre class="code">idade = <span class="f">int</span>(<span class="f">input</span>(<span class="s">"Digite sua idade: "</span>))
+altura = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Digite sua altura: "</span>))
+
+n1 = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Primeiro número: "</span>))
+n2 = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Segundo número: "</span>))
+<span class="f">print</span>(<span class="s">"Soma:"</span>, n1 + n2)</pre>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:14px">O programa espera valores compatíveis: <b>int("abc") gera um erro</b> — aprenderemos a tratá-lo na Aula 07.</div>
+    </div>
+  </section>
+
+  <!-- E P S -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 7</p>
+      <h2 class="h2">Entrada → Processamento → Saída</h2>
+      <p class="lead">O modelo guia desde a Aula 01, agora com código real: área de um retângulo.</p>
+    </header>
+    <div class="s-body">
+      <div class="flow">
+        <div class="fbox"><h4>ENTRADA</h4><p>largura e altura</p></div>
+        <div class="farr"><svg class="ic"><use href="#i-forward"/></svg></div>
+        <div class="fbox mid"><h4>PROCESSAMENTO</h4><p>área = largura × altura</p></div>
+        <div class="farr"><svg class="ic"><use href="#i-forward"/></svg></div>
+        <div class="fbox"><h4>SAÍDA</h4><p>print("Área:", area)</p></div>
+      </div>
+      <div class="cols-2" style="margin-top:16px">
+        <pre class="code">largura = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Largura: "</span>))
+altura = <span class="f">float</span>(<span class="f">input</span>(<span class="s">"Altura: "</span>))</pre>
+        <pre class="code">area = largura * altura
+<span class="f">print</span>(<span class="s">"Área:"</span>, area)</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINT / F-STRING -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 8</p>
+      <h2 class="h2">Saída formatada: print() e f-strings</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Vírgulas separam valores</span>
+          <pre class="code">nome = <span class="s">"Marina"</span>
+idade = <span class="n">19</span>
+
+<span class="f">print</span>(<span class="s">"Nome:"</span>, nome)
+<span class="f">print</span>(<span class="s">"Idade:"</span>, idade)</pre>
+        </div>
+        <div>
+          <span class="code-label">f-string insere variáveis no texto</span>
+          <pre class="code"><span class="f">print</span>(<span class="s">f"{nome} tem {idade} anos."</span>)</pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">O prefixo <b>f</b> permite usar { } dentro da string. Extensão útil: <code class="inl">f"{total:.2f}"</code> exibe sempre 2 casas decimais — ideal para dinheiro (R$ 37.50).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Calculadora de compra</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> integrar entrada, conversão, cálculo e saída formatada.</p>
+          <p><b>Tarefa:</b> solicitar nome do produto, quantidade e preço unitário; calcular o total e exibir um resumo da compra.</p>
+          <p><b>Mobiliza:</b> input(), int(), float(), operadores, print() com f-string.</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-search"/></svg></span><div><h5>Classifique os dados</h5><p>Produto é texto (str); quantidade é int; preço é float.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-map"/></svg></span><div><h5>Escreva o roteiro primeiro</h5><p>entrada → processamento → saída, antes do código.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h5>Converta antes de multiplicar</h5><p>qtd * preco só funciona com números.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h5>Questione</h5><p>Por que somar a quantidade ao preço não resolveria o problema?</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:12px">Produto: Caderno
+Quantidade: 3
+Preço unitário: 12.50
+
+Produto: Caderno · Quantidade: 3
+Total: R$ 37.50</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Aritméticos</h4><p>// descarta decimais; % entrega o resto.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Relacionais e lógicos</h4><p>Comparações geram True/False; and, or e not combinam.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>input()</h4><p>Recebe dados do usuário — sempre como texto.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>int() e float()</h4><p>Convertem texto numérico para cálculo.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>print() e f-string</h4><p>f"{...}" insere variáveis no texto; .2f formata dinheiro.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>E → P → S</h4><p>Todo programa pode ser lido como entrada, processamento e saída.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Estruturas de Decisão</b>: programas que escolhem caminhos.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 16</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

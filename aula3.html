@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 03 · Algoritmos e Apresentação do Python</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="3">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-list"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 03</p>
+    <h1>Algoritmos e Apresentação do Python</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Do passo a passo escondido nas rotinas do dia a dia até o primeiro encontro visual com a linguagem que usaremos no curso.</p>
+    <p class="c-note">Pré-requisito: Aula 02 — Lógica de Programação</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Da definição formal até o exercício no papel — com a primeira olhada no código Python.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício no papel · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h4>O que é um algoritmo</h4><p>A definição formal e as três propriedades obrigatórias.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-traffic"/></svg></span><div><h4>Algoritmos no cotidiano</h4><p>Rotinas que executamos no "piloto automático".</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-grid"/></svg></span><div><h4>Decomposição extrema</h4><p>Quantos passos existem em "escovar os dentes"? Trinta.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-cpu"/></svg></span><div><h4>A literalidade da máquina</h4><p>Por que o computador não deduz, não corrige e não pula etapas.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-python"/></svg></span><div><h4>Conheça o Python</h4><p>História, filosofia e o visual do código em comparação com o C++.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício e próximos passos</h4><p>Algoritmo no papel e o que vem na Aula 04.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 1 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">O que é um algoritmo?</h2>
+      <p class="lead">A ferramenta central que organiza o pensamento antes de qualquer linha de código — agora formalizamos a prévia da Aula 02.</p>
+    </header>
+    <div class="s-body">
+      <div class="quote">Algoritmo é uma <b>sequência finita, ordenada e não ambígua de passos</b> que leva à realização de uma tarefa ou à solução de um problema.</div>
+      <div class="cols-3" style="margin-top:14px">
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-book"/></svg></span><div><h4>Passos compreensíveis</h4><p>Cada instrução clara, sem duplo sentido.</p></div></div>
+        <div class="card dark card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-map"/></svg></span><div><h4>Ordem lógica</h4><p>Cronologia rigorosa: cada ação depende da anterior.</p></div></div>
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-clock"/></svg></span><div><h4>Finitude</h4><p>Início, etapas intermediárias e término obrigatório.</p></div></div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;font-style:italic;color:var(--blue2)">Receita culinária, manual de montagem e guia de primeiros socorros são algoritmos em linguagem natural.</p>
+    </div>
+  </section>
+
+  <!-- CONCEITO 2 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Algoritmos no cotidiano: o piloto automático</h2>
+      <p class="lead">O cérebro automatiza rotinas — mas uma máquina não tem intuição nem memória muscular: cada detalhe omitido é uma falha potencial.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-3">
+        <div class="card"><div class="card-flex" style="margin-bottom:6px"><span class="ic-dot"><svg class="ic"><use href="#i-traffic"/></svg></span><h4>Atravessar uma rua</h4></div><p>Parar no meio-fio → olhar à esquerda → olhar à direita → avaliar a velocidade dos veículos → atravessar em linha reta.</p></div>
+        <div class="card dark"><div class="card-flex" style="margin-bottom:6px"><span class="ic-dot"><svg class="ic"><use href="#i-phone"/></svg></span><h4>Fazer uma ligação</h4></div><p>Desbloquear a tela → abrir os contatos → buscar o nome → discar → aproximar do ouvido.</p></div>
+        <div class="card"><div class="card-flex" style="margin-bottom:6px"><span class="ic-dot"><svg class="ic"><use href="#i-card"/></svg></span><h4>Sacar no caixa eletrônico</h4></div><p>Inserir o cartão → digitar a senha → escolher saque e valor → recolher cartão, cédulas e comprovante.</p></div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;font-style:italic;color:var(--blue2)">Executamos essas ações quase sem pensar. Um programa precisa de cada passo explicitado.</p>
+    </div>
+  </section>
+
+  <!-- CONCEITO 3 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Decomposição extrema: "escovar os dentes"</h2>
+      <p class="lead">A instrução "Acorde e vá escovar os dentes" basta para um humano. Para uma execução lógica: <b style="color:var(--ink)">30 passos numerados</b> — agrupados aqui em 5 fases.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-5">
+        <div class="card"><p style="color:#b8912a;font-weight:700;font-size:11px;letter-spacing:.06em">FASE 1 · PASSOS 1–3</p><h4 style="margin-top:4px">Despertar</h4><p>Ouvir o alarme; abrir os olhos; esticar o braço e desligá-lo na mesa de cabeceira.</p></div>
+        <div class="card"><p style="color:#b8912a;font-weight:700;font-size:11px;letter-spacing:.06em">FASE 2 · PASSOS 4–10</p><h4 style="margin-top:4px">Deslocamento</h4><p>Levantar; caminhar até o banheiro; acender a luz; parar diante da pia.</p></div>
+        <div class="card dark"><p style="color:var(--gold);font-weight:700;font-size:11px;letter-spacing:.06em">FASE 3 · PASSOS 11–20</p><h4 style="margin-top:4px">Preparação</h4><p>Pegar escova e pasta; girar a tampa (13); pressionar o tubo até sair pasta (15); umedecer as cerdas (19).</p></div>
+        <div class="card"><p style="color:#b8912a;font-weight:700;font-size:11px;letter-spacing:.06em">FASE 4 · PASSOS 21–23</p><h4 style="margin-top:4px">Escovação</h4><p>Escovar todas as faces dos dentes e a língua por 2 minutos; cuspir a espuma.</p></div>
+        <div class="card"><p style="color:#b8912a;font-weight:700;font-size:11px;letter-spacing:.06em">FASE 5 · PASSOS 24–30</p><h4 style="margin-top:4px">Finalização</h4><p>Enxaguar a boca; lavar e guardar a escova; secar o rosto; apagar a luz.</p></div>
+      </div>
+      <div class="warn" style="margin-top:14px"><b>Sem o passo 13</b> (abrir a tampa da pasta), o passo 15 falha: nada sai do tubo. <b>Ordem e completude não são opcionais.</b></div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 4 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4 · Conexão com as Aulas 01–02</p>
+      <h2 class="h2">O computador é uma entidade literal</h2>
+    </header>
+    <div class="s-body">
+      <div class="quote">"Extremamente rápido, mas <b>estritamente literal e sem iniciativa</b>: ele não faz nada além do que foi detalhadamente instruído."</div>
+      <div class="cols-3" style="margin-top:14px">
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h4>Não deduz intenções</h4><p>Pediu a média de 3 notas e esqueceu de dividir por 3? Ele entrega a soma — sem desconfiar do equívoco.</p></div></div>
+        <div class="card dark card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h4>Não corrige ambiguidades</h4><p>Executa a ambiguidade até travar ou errar: <i>lixo entra, lixo sai</i> (GIGO).</p></div></div>
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-key"/></svg></span><div><h4>Não pula etapas "óbvias"</h4><p>Porta trancada sem instrução para girar a chave? A execução simplesmente para.</p></div></div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;font-style:italic;color:var(--blue2)">Programar é estruturar comandos com clareza suficiente para que uma máquina literal alcance exatamente o objetivo esperado.</p>
+    </div>
+  </section>
+
+  <!-- CONCEITO 5 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Estrutura padrão de um algoritmo textual</h2>
+      <p class="lead">O modelo clássico de processamento de dados — a mesma espinha dorsal do modelo de Von Neumann (Aula 01).</p>
+    </header>
+    <div class="s-body">
+      <div class="flow">
+        <div class="fbox"><h4>ENTRADA DE DADOS</h4><p>Informações necessárias que alimentam o processo</p></div>
+        <div class="farr"><svg class="ic"><use href="#i-forward"/></svg></div>
+        <div class="fbox mid"><h4>PROCESSAMENTO</h4><p>Ações, cálculos, decisões e transformações</p></div>
+        <div class="farr"><svg class="ic"><use href="#i-forward"/></svg></div>
+        <div class="fbox"><h4>SAÍDA DE DADOS</h4><p>Resultados apresentados ao usuário ou sistema</p></div>
+      </div>
+      <div class="card dark" style="margin-top:14px">
+        <h4 style="color:var(--gold)">Exemplo — Preparar um suco de pacote (com INÍCIO e FIM)</h4>
+        <p style="margin-top:6px"><b>ENTRADA (1–4):</b> jarra de 1 L e colher; 1 litro de água filtrada; 1 envelope de suco em pó.</p>
+        <p><b>PROCESSAMENTO (5–9):</b> abrir o envelope e despejar o pó na água; mexer por 30 segundos; <b>se ainda houver pó no fundo, mexer por mais 15 segundos</b>.</p>
+        <p><b>SAÍDA (10):</b> servir o suco pronto em um copo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 6 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 6</p>
+      <h2 class="h2">Conheça o Python</h2>
+      <p class="lead">A linguagem que usaremos do início ao fim — hoje, apenas reconhecimento visual (sem editor e sem execução).</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-book"/></svg></span><div><h4>Criação</h4><p>Concebida no final dos anos 1980 como projeto de hobby; primeira versão pública em 1991, por Guido van Rossum — matemático e programador holandês.</p></div></div>
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-comment"/></svg></span><div><h4>Origem do nome</h4><p>Contrariando o senso comum, não é a serpente: vem do grupo de humor britânico <i>Monty Python</i>, do qual Guido era fã.</p></div></div>
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-layers"/></svg></span><div><h4>Linguagem de alto nível</h4><p>Muito distante dos circuitos e do binário — palavras e construções próximas do inglês do dia a dia.</p></div></div>
+        <div class="card dark card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-python"/></svg></span><div><h4>Neste curso</h4><p>Nossa ferramenta do início ao fim — direto, sem etapa em Portugol (decisão da Aula 02).</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 7 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 7</p>
+      <h2 class="h2">A filosofia: The Zen of Python</h2>
+      <p class="lead">A cultura de clareza da linguagem, resumida em diretrizes escritas por Tim Peters.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card dark" style="font-size:14.5px;line-height:2;font-style:italic">
+          <p>"Bonito é melhor que feio."</p>
+          <p>"Explícito é melhor que implícito."</p>
+          <p>"Simples é melhor que complexo."</p>
+          <p style="background:var(--gold);color:var(--panel);font-weight:700;font-style:normal;border-radius:8px;padding:2px 12px;display:inline-block">"Legibilidade conta."</p>
+          <p>"Se a implementação é difícil de explicar, é uma má ideia."</p>
+        </div>
+        <div class="card">
+          <h4>O resultado prático</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Palavras-chave intuitivas e comandos diretos</li>
+            <li>Elementos puramente burocráticos são dispensados</li>
+            <li>Menos ruído visual — o foco fica na lógica da solução</li>
+          </ul>
+          <p style="margin-top:10px;font-size:12.5px;font-style:italic;color:var(--mut)">The Zen of Python — Tim Peters (PEP 20)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMOSTRA 1 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Amostra 1 · C++ × Python</p>
+      <h2 class="h2">Olá, mundo! — a mensagem mínima</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Em C++</span>
+          <pre class="code"><span class="c">#include &lt;iostream&gt;</span>
+
+<span class="k">int</span> main() {
+    std::cout &lt;&lt; <span class="s">"Ola, mundo!"</span> &lt;&lt; std::endl;
+    <span class="k">return</span> 0;
+}</pre>
+        </div>
+        <div>
+          <span class="code-label">Em Python</span>
+          <pre class="code"><span class="f">print</span>(<span class="s">"Ola, mundo!"</span>)
+
+<span class="c"># uma linha — é só isso.</span></pre>
+        </div>
+      </div>
+      <div class="agenda" style="margin-top:14px">
+        <span>Sem #include</span><span>Sem função main()</span><span>Sem return 0 obrigatório</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMOSTRA 2 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Amostra 2 · C++ × Python</p>
+      <h2 class="h2">A média das 3 notas — o problema-guia</h2>
+      <p class="lead">O mesmo cálculo desenhado na Aula 02, agora em código real.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Em C++</span>
+          <pre class="code"><span class="c">#include &lt;iostream&gt;</span>
+
+<span class="k">int</span> main() {
+    <span class="k">float</span> n1 = 7, n2 = 8, n3 = 9;
+    <span class="k">float</span> media = (n1 + n2 + n3) / 3;
+    std::cout &lt;&lt; <span class="s">"Media: "</span> &lt;&lt; media &lt;&lt; std::endl;
+    <span class="k">return</span> 0;
+}</pre>
+        </div>
+        <div>
+          <span class="code-label">Em Python</span>
+          <pre class="code">n1 = 7
+n2 = 8
+n3 = 9
+
+media = (n1 + n2 + n3) / 3
+<span class="f">print</span>(<span class="s">"Media:"</span>, media)</pre>
+        </div>
+      </div>
+      <div class="agenda" style="margin-top:14px">
+        <span>Sem declaração de tipo (float)</span><span>Sem ponto e vírgula obrigatório</span><span>Fim da linha = fim da instrução</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMOSTRA 3 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Amostra 3 · C++ × Python</p>
+      <h2 class="h2">Tomada de decisão: maior de idade?</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Em C++</span>
+          <pre class="code" style="font-size:12.5px"><span class="c">#include &lt;iostream&gt;</span>
+
+<span class="k">int</span> main() {
+    <span class="k">int</span> idade = 20;
+
+    <span class="k">if</span> (idade &gt;= 18) {
+        std::cout &lt;&lt; <span class="s">"Acesso permitido."</span> &lt;&lt; std::endl;
+    } <span class="k">else</span> {
+        std::cout &lt;&lt; <span class="s">"Acesso negado."</span> &lt;&lt; std::endl;
+    }
+    <span class="k">return</span> 0;
+}</pre>
+        </div>
+        <div>
+          <span class="code-label">Em Python</span>
+          <pre class="code" style="font-size:14px">idade = 20
+
+<span class="k">if</span> idade &gt;= 18:
+    <span class="f">print</span>(<span class="s">"Acesso permitido."</span>)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"Acesso negado."</span>)</pre>
+        </div>
+      </div>
+      <div class="agenda" style="margin-top:14px">
+        <span>Sem chaves { } delimitando blocos</span><span>A indentação define o que está dentro do if/else</span><span>Os dois-pontos abrem cada bloco</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANATOMIA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 8</p>
+      <h2 class="h2">Anatomia das instruções que vimos</h2>
+      <p class="lead">Os elementos fundamentais que compõem um programa em Python.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-4">
+        <div class="card"><p><code class="inl">print(...)</code></p><p style="margin-top:6px"><b>Comando de saída:</b> exibe algo na tela.</p></div>
+        <div class="card"><p><code class="inl">"texto"</code></p><p style="margin-top:6px"><b>Cadeia de caracteres:</b> marcada por aspas.</p></div>
+        <div class="card"><p><code class="inl">numero1, idade</code></p><p style="margin-top:6px"><b>Variáveis:</b> nomes de espaços de armazenamento.</p></div>
+        <div class="card"><p><code class="inl">=</code></p><p style="margin-top:6px"><b>Atribuição:</b> guarda o valor da direita no nome da esquerda.</p></div>
+        <div class="card"><p><code class="inl">+ - * /</code></p><p style="margin-top:6px"><b>Aritméticos:</b> executam os cálculos matemáticos.</p></div>
+        <div class="card"><p><code class="inl">&gt;= == &lt; !=</code></p><p style="margin-top:6px"><b>Comparações:</b> resultam em True ou False.</p></div>
+        <div class="card"><p><code class="inl">if / else</code></p><p style="margin-top:6px"><b>Decisão:</b> "se a condição vale, faça A; senão, faça B".</p></div>
+        <div class="card"><p><code class="inl">:</code></p><p style="margin-top:6px"><b>Dois-pontos:</b> iniciam um bloco subordinado (indentado).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício · Papel e caneta</p>
+      <h2 class="h2">Algoritmo para trocar uma lâmpada queimada</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Cenário:</b> você entra em um quarto escuro, aciona o interruptor da parede — e a lâmpada do teto não acende.</p>
+          <p><b>Tarefa:</b> escrever um algoritmo textual completo e numerado, do instante em que você nota o defeito até a lâmpada nova ser testada com sucesso e a antiga descartada.</p>
+          <p style="margin-top:auto;font-size:12px;font-style:italic;color:rgba(255,255,255,.6)">Sem computador e sem editor: hoje, a lógica é toda sua.</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h5>Presuma a literalidade de quem executa</h5><p>Instruções vagas como "troque com cuidado" são proibidas.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h5>Segurança e verificação física</h5><p>Interruptor/disjuntor desligado antes do contato com o bocal; escada estável; testar a temperatura da lâmpada queimada antes de desenroscar.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h5>Validação do resultado</h5><p>Religar a energia e testar; se a nova não acender, verificar se está bem rosqueada.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h5>Formatação obrigatória</h5><p>Marcação explícita de INÍCIO e FIM; no mínimo 12 passos numerados e sequenciais.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>O conceito de algoritmo</h4><p>Sequência finita, ordenada e não ambígua de passos.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Decomposição cotidiana</h4><p>Rotinas automáticas escondem dezenas de micropassos.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>A literalidade da máquina</h4><p>Sem dedução nem bom senso — comandos precisos.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Estrutura clássica</h4><p>Entrada → Processamento → Saída.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Python</h4><p>Linguagem legível e direta, criada para expressar lógica.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Papel antes do teclado</h4><p>O algoritmo bem organizado vem antes de qualquer código.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Variáveis, Constantes e Tipos de Dados</b>: a primeira manipulação de dados na memória.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 14</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

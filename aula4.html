@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 04 · Variáveis, Constantes e Tipos de Dados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="4">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-box"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 04</p>
+    <h1>Variáveis, Constantes e Tipos de Dados</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Onde as informações ficam durante a execução: atribuição, nomenclatura, int, float, str, bool — e a natureza da tipagem dinâmica.</p>
+    <p class="c-note">Pré-requisito: Aula 03 — Algoritmos e Apresentação do Python</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Da primeira linha executável até a caixa de ferramentas de dados do Python.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-box"/></svg></span><div><h4>O que é uma variável?</h4><p>Nome associado a um valor — e o que o = realmente faz.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Regras de nomenclatura</h4><p>O que pode, o que não pode e a convenção snake_case.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-grid"/></svg></span><div><h4>Tipos primitivos</h4><p>int, float, bool e str — e a pegadinha do "18".</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-search"/></svg></span><div><h4>Tipagem dinâmica e type()</h4><p>O tipo acompanha o valor, não o nome.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-shield"/></svg></span><div><h4>Constantes e comentários</h4><p>PI, TAXA_JUROS e a documentação do código.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício</h4><p>Dados de um estudante, com tipos e nomes corretos.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETOMADA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Retomada</p>
+      <h2 class="h2">Do algoritmo ao armazenamento de informações</h2>
+    </header>
+    <div class="s-body">
+      <div class="quote">Quando um programa precisa guardar o nome de uma pessoa, a idade ou o valor de uma compra — <b>onde essas informações ficam durante a execução?</b></div>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--mut)">Desde a Aula 01 seguimos o mesmo caminho: o programa recebe informações (entrada), processa e apresenta resultados (saída). Hoje estudamos o <b style="color:var(--ink)">"guardar"</b>.</p>
+    </div>
+  </section>
+
+  <!-- O QUE É VARIÁVEL -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">O que é uma variável?</h2>
+      <p class="lead">Um nome associado a um valor durante a execução — como cadeiras etiquetadas numa sala: o nome localiza o dado guardado.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">A sala de armazenamento</span>
+          <pre class="code">nome   →  "Marina"
+idade  →  19
+media  →  8.5</pre>
+        </div>
+        <div>
+          <span class="code-label">Criação por atribuição</span>
+          <pre class="code">nome = <span class="s">"Marina"</span>
+idade = <span class="n">19</span>
+media = <span class="n">8.5</span></pre>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:14px"><b>=</b> não é igualdade matemática: é <b>atribuição</b> — o valor da direita passa a ser associado ao nome da esquerda.</div>
+    </div>
+  </section>
+
+  <!-- ATUALIZAÇÃO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1 · continuação</p>
+      <h2 class="h2">Atualizando um valor</h2>
+      <p class="lead">A segunda atribuição substitui a anterior.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Python</span>
+          <pre class="code">idade = <span class="n">19</span>
+idade = <span class="n">20</span>
+
+<span class="f">print</span>(idade)</pre>
+        </div>
+        <div class="card">
+          <span class="code-label">Saída</span>
+          <pre class="code">20</pre>
+          <p style="margin-top:10px"><b>Pergunta para a turma:</b> se a variável recebeu primeiro 19 e depois 20, qual deles será exibido? Por quê?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOMENCLATURA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Regras de nomenclatura</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card">
+          <h4>Regras fundamentais</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Podem conter letras, números e <code class="inl">_</code></li>
+            <li>Não podem começar com número</li>
+            <li>Não podem conter espaços</li>
+            <li>Não podem usar palavras reservadas</li>
+            <li>Diferenciam maiúsculas de minúsculas</li>
+          </ul>
+        </div>
+        <div>
+          <span class="code-label">Válido</span>
+          <pre class="code">nome_completo = <span class="s">"Lucas"</span>
+idade_aluno = <span class="n">18</span>
+nota1 = <span class="n">7.5</span></pre>
+          <span class="code-label" style="margin-top:10px">Inválido</span>
+          <pre class="code"><span class="c"># 2nota = 8.0    # começa com número</span>
+<span class="c"># nome completo  # contém espaço</span>
+<span class="c"># class = "ADS"  # palavra reservada</span></pre>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:14px">Python diferencia maiúsculas: <b>idade</b>, <b>Idade</b> e <b>IDADE</b> são três variáveis diferentes.</div>
+    </div>
+  </section>
+
+  <!-- SNAKE_CASE -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Convenção</p>
+      <h2 class="h2">snake_case: nomes que contam a história</h2>
+      <p class="lead">Em Python, o padrão da comunidade é usar minúsculas e separar palavras com _.</p>
+    </header>
+    <div class="s-body">
+      <table class="t big">
+        <tr><th>Pouco descritivo</th><th>Mais claro</th></tr>
+        <tr><td><code>x</code></td><td><code>idade_aluno</code></td></tr>
+        <tr><td><code>n</code></td><td><code>nome_completo</code></td></tr>
+        <tr><td><code>v</code></td><td><code>valor_compra</code></td></tr>
+        <tr><td><code>m</code></td><td><code>media_final</code></td></tr>
+      </table>
+      <p style="margin-top:14px;text-align:center;font-size:13.5px;font-style:italic;color:var(--blue2)">O nome deve indicar o significado do dado — não sua posição nem seu tipo.</p>
+    </div>
+  </section>
+
+  <!-- TIPOS PRIMITIVOS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Tipos de dados primitivos</h2>
+      <p class="lead">Python identifica automaticamente o tipo do valor atribuído à variável.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-4">
+        <div class="card card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><h4 style="margin-top:8px">int — inteiro</h4><p>Números sem parte decimal: <code class="inl">18</code>, <code class="inl">5</code>, <code class="inl">120</code>.</p></div>
+        <div class="card dark card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><h4 style="margin-top:8px">float — decimal</h4><p>Ponto separa a parte decimal: <code class="inl" style="background:rgba(255,255,255,.12);color:#fff">1.72</code>, <code class="inl" style="background:rgba(255,255,255,.12);color:#fff">8.5</code>, <code class="inl" style="background:rgba(255,255,255,.12);color:#fff">19.90</code>.</p></div>
+        <div class="card card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><h4 style="margin-top:8px">bool — lógico</h4><p>Apenas <code class="inl">True</code> e <code class="inl">False</code> — sempre com inicial maiúscula.</p></div>
+        <div class="card dark card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-comment"/></svg></span><h4 style="margin-top:8px">str — texto</h4><p>Entre aspas simples ou duplas: <code class="inl" style="background:rgba(255,255,255,.12);color:#fff">"Marina"</code>.</p></div>
+      </div>
+      <div class="warn" style="margin-top:16px">Em float, usa-se <b>ponto</b> para separar a parte decimal (8.5, não 8,5).</div>
+    </div>
+  </section>
+
+  <!-- PEGADINHA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Atenção</p>
+      <h2 class="h2">A pegadinha do "18"</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Dois valores visualmente parecidos</span>
+          <pre class="code">idade = <span class="n">18</span>       <span class="c"># int  → número</span>
+idade_texto = <span class="s">"18"</span>  <span class="c"># str  → texto</span></pre>
+        </div>
+        <div class="card">
+          <span class="code-label">Comprovando com type()</span>
+          <pre class="code"><span class="f">print</span>(<span class="f">type</span>(idade))       <span class="c"># &lt;class 'int'&gt;</span>
+<span class="f">print</span>(<span class="f">type</span>(idade_texto)) <span class="c"># &lt;class 'str'&gt;</span></pre>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px">Aspas transformam número em texto. Para o Python, <b>18</b> e <b>"18"</b> são coisas completamente diferentes.</div>
+    </div>
+  </section>
+
+  <!-- TIPAGEM DINÂMICA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Tipagem dinâmica e a função type()</h2>
+      <p class="lead">O tipo acompanha o valor — a variável não fica presa ao primeiro tipo utilizado.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">O tipo muda com o valor</span>
+          <pre class="code">dado = <span class="n">10</span>
+<span class="f">print</span>(<span class="f">type</span>(dado))   <span class="c"># &lt;class 'int'&gt;</span>
+
+dado = <span class="s">"dez"</span>
+<span class="f">print</span>(<span class="f">type</span>(dado))   <span class="c"># &lt;class 'str'&gt;</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Consultando vários tipos</span>
+          <pre class="code">nome = <span class="s">"Marina"</span>;  altura = <span class="n">1.68</span>;  matriculado = <span class="k">True</span>
+
+<span class="f">print</span>(<span class="f">type</span>(nome))         <span class="c"># &lt;class 'str'&gt;</span>
+<span class="f">print</span>(<span class="f">type</span>(altura))       <span class="c"># &lt;class 'float'&gt;</span>
+<span class="f">print</span>(<span class="f">type</span>(matriculado))  <span class="c"># &lt;class 'bool'&gt;</span></pre>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px">O valor <b>25</b> e o valor <b>"25"</b> são iguais para Python? O que muda entre eles?</div>
+    </div>
+  </section>
+
+  <!-- CONSTANTES -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Constantes e convenções de escrita</h2>
+      <p class="lead">Um valor que, por convenção, não deve mudar durante a execução. Python não trava a variável — quem avisa é o nome em MAIÚSCULAS.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">A convenção</span>
+          <pre class="code">PI = <span class="n">3.14159</span>
+TAXA_JUROS = <span class="n">0.05</span>
+LIMITE_TENTATIVAS = <span class="n">3</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Pi também vem pronto</span>
+          <pre class="code"><span class="k">import</span> math
+
+<span class="f">print</span>(math.pi)   <span class="c"># 3.14159...</span></pre>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--mut)"><code class="inl">import math</code> acessa recursos matemáticos da biblioteca padrão. Escrever em maiúsculas é um aviso para quem lê e mantém o código.</p>
+    </div>
+  </section>
+
+  <!-- COMENTÁRIOS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Boa prática</p>
+      <h2 class="h2">Comentários: código explicado para pessoas</h2>
+      <p class="lead">O interpretador ignora comentários — eles existem para quem lê o código depois (incluindo você).</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label"># — comentário de linha</span>
+          <pre class="code"><span class="c"># Dados básicos do estudante</span>
+nome = <span class="s">"Marina"</span>
+idade = <span class="n">19</span>  <span class="c"># idade atual</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Aspas triplas — string multilinha</span>
+          <pre class="code"><span class="s">"""
+Programa de cadastro de estudante.
+Armazena nome e idade.
+"""</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Quando soltas, funcionam como nota explicativa — mas o mecanismo padrão de comentário é <b>#</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Dados de um estudante</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> armazenar e classificar informações de um estudante.</p>
+          <p><b>Tarefa:</b> criar variáveis com nomes claros (snake_case) para nome, idade, altura e situação de matrícula. Exibir cada valor seguido do seu tipo usando type().</p>
+          <p><b>Mobiliza:</b> str, int, float, bool, print() e type().</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h5>Planeje antes de digitar</h5><p>Escolha o nome e o tipo de cada variável primeiro.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-grid"/></svg></span><div><h5>Quatro tipos</h5><p>str para o nome, int para a idade, float para a altura, bool para a matrícula.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-search"/></svg></span><div><h5>Confira a pegadinha</h5><p>Por que "19" seria str e 19 seria int?</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h5>Compare</h5><p>Execute e confira a saída com o exemplo ao lado.</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:12px">Nome: Marina
+Tipo: &lt;class 'str'&gt;
+
+Idade: 19
+Tipo: &lt;class 'int'&gt;
+
+Altura: 1.68
+Tipo: &lt;class 'float'&gt;
+
+Matriculada: True
+Tipo: &lt;class 'bool'&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Variáveis</h4><p>Associam nomes a valores durante a execução.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Atribuição (=)</h4><p>O valor da direita é guardado no nome da esquerda.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Nomenclatura</h4><p>Clara, snake_case, sem começar com número, case-sensitive.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Tipos primitivos</h4><p>int, float, bool e str — "18" é texto, 18 é número.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>type() e tipagem dinâmica</h4><p>O tipo acompanha o valor, não o nome.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Constantes e comentários</h4><p>MAIÚSCULAS por convenção; # documenta o código.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Operadores e Entrada, Processamento e Saída</b>: fazer o programa conversar com o usuário.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 14</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

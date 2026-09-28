@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 07 · Depuração e Tratamento de Erros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="7">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-search"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 07</p>
+    <h1>Depuração e Tratamento de Erros</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Identificar e corrigir erros de sintaxe e lógica, ler o traceback do Python e proteger o programa com try, except e ValueError.</p>
+    <p class="c-note">Pré-requisito: Aula 06 — Estruturas de Decisão</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Errar faz parte — o profissional é quem sabe encontrar e corrigir.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h4>Três categorias de erro</h4><p>Sintaxe, execução e lógica — cada uma com seu remédio.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-comment"/></svg></span><div><h4>Lendo o traceback</h4><p>A mensagem de erro do Python conta onde e o que falhou.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-bulb"/></svg></span><div><h4>Técnicas de depuração</h4><p>print de inspeção e teste de mesa.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-table"/></svg></span><div><h4>Estratégia de testes</h4><p>Valores de fronteira e entradas representativas.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-shield"/></svg></span><div><h4>try / except / ValueError</h4><p>Proteger o programa contra entradas inválidas.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício</h4><p>Nota validada: converter com segurança e classificar.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRÊS CATEGORIAS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">Três categorias de erro</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-3">
+        <div class="card card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-comment"/></svg></span><h4 style="margin-top:8px">Erro de sintaxe</h4><p>O código não segue a gramática da linguagem. <b>O programa nem começa.</b><br><br>Ex.: esquecer os dois-pontos do if.</p></div>
+        <div class="card dark card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><h4 style="margin-top:8px">Erro de execução</h4><p>O programa inicia, mas <b>falha no meio do caminho</b>.<br><br>Ex.: converter "abc" para int; dividir por zero.</p></div>
+        <div class="card card-flex" style="flex-direction:column"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><h4 style="margin-top:8px">Erro lógico</h4><p>O programa <b>roda até o fim, mas com resultado errado</b>.<br><br>Ex.: condições na ordem trocada (Aula 06).</p></div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;font-style:italic;color:var(--blue2)">O mais traiçoeiro é o erro lógico: o Python não reclama — quem precisa perceber é você, testando.</p>
+    </div>
+  </section>
+
+  <!-- SINTAXE -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Categoria 1</p>
+      <h2 class="h2">Erros de sintaxe: SyntaxError</h2>
+      <p class="lead">O Python aponta a linha e o problema antes de executar qualquer coisa.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Exemplos clássicos</span>
+          <pre class="code"><span class="k">if</span> idade &gt;= <span class="n">18</span>      <span class="c"># faltou o :</span>
+    <span class="f">print</span>(<span class="s">"ok"</span>)
+
+<span class="f">print</span>(<span class="s">"Olá</span>          <span class="c"># faltou fechar aspas</span>
+
+<span class="f">print</span>(<span class="s">"Olá"</span>          <span class="c"># faltou fechar parêntese</span></pre>
+        </div>
+        <div class="card">
+          <h4>Como o Python avisa</h4>
+          <pre class="code" style="margin-top:6px">  File "programa.py", line 3
+    if idade &gt;= 18
+                 ^
+SyntaxError: expected ':'
+</pre>
+          <ul class="b" style="margin-top:8px">
+            <li>O circunflexo <b>^</b> aponta o local aproximado</li>
+            <li>A mensagem descreve o que faltou</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUÇÃO + TRACEBACK -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Categoria 2</p>
+      <h2 class="h2">Erros de execução: lendo o traceback</h2>
+      <p class="lead">O "rastreamento" mostra o caminho até a falha — leia sempre de baixo para cima.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">O programa</span>
+          <pre class="code"><span class="c"># media.py</span>
+idade = <span class="f">int</span>(<span class="f">input</span>(<span class="s">"Digite sua idade: "</span>))
+<span class="f">print</span>(<span class="s">"Você tem"</span>, idade, <span class="s">"anos."</span>)</pre>
+          <span class="code-label" style="margin-top:10px">O usuário digita "abc"…</span>
+          <pre class="code">Traceback (most recent call last):
+  File "media.py", line 2, in &lt;module&gt;
+    idade = int(input("Digite sua idade: "))
+<span class="s">ValueError:</span> invalid literal for int()
+with base 10: 'abc'</pre>
+        </div>
+        <div class="card">
+          <h4>Como ler</h4>
+          <ul class="b" style="margin-top:6px">
+            <li><b>Última linha:</b> o tipo do erro (ValueError) + a descrição</li>
+            <li><b>Linhas de cima:</b> onde ocorreu — arquivo e número da linha</li>
+            <li><b>Causa aqui:</b> int("abc") — letras não viram número</li>
+          </ul>
+          <p style="margin-top:10px;font-size:12.5px;color:var(--mut)">Outros erros comuns de execução: <code class="inl">ZeroDivisionError</code> (dividir por 0) e <code class="inl">NameError</code> (usar uma variável que não existe).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LÓGICO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Categoria 3</p>
+      <h2 class="h2">Erros lógicos: o programa "funciona"… errado</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Com erro lógico</span>
+          <pre class="code">nota = <span class="n">8</span>
+
+<span class="k">if</span> nota &gt;= <span class="n">5</span>:
+    <span class="f">print</span>(<span class="s">"Recuperação"</span>)
+<span class="k">elif</span> nota &gt;= <span class="n">7</span>:
+    <span class="f">print</span>(<span class="s">"Aprovado"</span>)
+<span class="k">else</span>:
+    <span class="f">print</span>(<span class="s">"Reprovado"</span>)</pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)"><b>Saída: Recuperação.</b> Nenhum erro é exibido — mas a nota 8 deveria aprovar!</p>
+        </div>
+        <div class="card">
+          <h4>Depurando com perguntas</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Qual condição verdadeira primeiro? <code class="inl">nota &gt;= 5</code></li>
+            <li>Por que ela "engole" a nota 8? <b>Ordem errada</b></li>
+          </ul>
+          <pre class="code" style="margin-top:8px"><span class="c"># correção: do mais restritivo</span>
+<span class="k">if</span> nota &gt;= <span class="n">7</span>: ...   <span class="c"># Aprovado</span>
+<span class="k">elif</span> nota &gt;= <span class="n">5</span>: ... <span class="c"># Recuperação</span></pre>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:12px">O programa não "entende a intenção" do programador. Ele executa as condições <b>na ordem escrita</b>.</div>
+    </div>
+  </section>
+
+  <!-- TÉCNICAS -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Técnicas de depuração (debugging)</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card">
+          <div class="card-flex" style="margin-bottom:6px"><span class="ic-dot"><svg class="ic"><use href="#i-bulb"/></svg></span><h4>print de inspeção</h4></div>
+          <p>Espalhe prints temporários para ver o valor das variáveis durante a execução:</p>
+          <pre class="code" style="margin-top:8px"><span class="f">print</span>(<span class="s">"DEBUG nota ="</span>, nota)   <span class="c"># temporário</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Quando o bug é encontrado, os prints de debug são removidos.</p>
+        </div>
+        <div class="card">
+          <div class="card-flex" style="margin-bottom:6px"><span class="ic-dot"><svg class="ic"><use href="#i-table"/></svg></span><h4>Teste de mesa</h4></div>
+          <p>Simular a execução no papel, anotando o valor de cada variável a cada passo:</p>
+          <table class="t" style="margin-top:8px">
+            <tr><th>Passo</th><th>nota</th><th>Condição</th><th>Saída</th></tr>
+            <tr><td>1</td><td>8</td><td>nota &gt;= 7 → True</td><td>Aprovado</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRATÉGIA DE TESTES -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Estratégia de testes</h2>
+      <p class="lead">Para a classificação de notas — os valores de fronteira são os mais importantes.</p>
+    </header>
+    <div class="s-body">
+      <table class="t big">
+        <tr><th>Entrada</th><th>Resultado esperado</th><th>Por quê</th></tr>
+        <tr><td><code>8</code></td><td>Aprovado</td><td>Caminho normal</td></tr>
+        <tr><td><code>7</code></td><td class="hl">Aprovado</td><td>Fronteira exata do &gt;=</td></tr>
+        <tr><td><code>6</code></td><td>Recuperação</td><td>Logo após a fronteira</td></tr>
+        <tr><td><code>5</code></td><td class="hl">Recuperação</td><td>Fronteira exata</td></tr>
+        <tr><td><code>4</code></td><td>Reprovado</td><td>Abaixo de todas</td></tr>
+        <tr><td><code>-1</code> / <code>11</code></td><td>Nota inválida</td><td>Fora do intervalo 0–10</td></tr>
+      </table>
+      <p style="margin-top:12px;text-align:center;font-size:13px;font-style:italic;color:var(--blue2)">Pequenos erros nos operadores (>, >=) mudam a classificação exatamente nas fronteiras.</p>
+    </div>
+  </section>
+
+  <!-- TRY/EXCEPT -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">try / except: proteger o programa</h2>
+      <p class="lead">Em vez de deixar o programa quebrar com uma entrada inválida, tentamos a operação e tratamos a falha.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Estrutura</span>
+          <pre class="code"><span class="k">try</span>:
+    <span class="c"># operação que PODE falhar</span>
+    ...
+<span class="k">except</span> ValueError:
+    <span class="c"># o que fazer SE falhar</span>
+    ...</pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)"><b>ValueError</b> é o tipo de erro gerado quando uma conversão recebe um valor inadequado — como int("abc").</p>
+        </div>
+        <div>
+          <span class="code-label">Exemplo completo</span>
+          <pre class="code"><span class="k">try</span>:
+    idade = <span class="f">int</span>(<span class="f">input</span>(<span class="s">"Digite sua idade: "</span>))
+    <span class="f">print</span>(<span class="s">"Você tem"</span>, idade, <span class="s">"anos."</span>)
+<span class="k">except</span> ValueError:
+    <span class="f">print</span>(<span class="s">"Entrada inválida: digite apenas números."</span>)
+
+<span class="f">print</span>(<span class="s">"Fim do programa"</span>)</pre>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:12px">Com try/except, digitar "abc" <b>não derruba o programa</b> — ele avisa e continua.</div>
+    </div>
+  </section>
+
+  <!-- FLUXO TRY/EXCEPT -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4 · continuação</p>
+      <h2 class="h2">Como o Python decide o caminho</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <table class="t big">
+          <tr><th>Cenário</th><th>O que acontece</th></tr>
+          <tr><td>Digita <code>20</code></td><td>try funciona → bloco inteiro executa → except é ignorado</td></tr>
+          <tr><td>Digita <code>abc</code></td><td>int() falha → salta imediatamente para o except → mensagem exibida</td></tr>
+        </table>
+        <div class="card">
+          <h4>Observações importantes</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Quando um erro acontece <b>dentro do try</b>, as linhas seguintes do bloco são puladas</li>
+            <li>O except só captura o tipo indicado (aqui, ValueError)</li>
+            <li>Depois do except, o programa segue normalmente</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:10px;font-size:13px;font-style:italic;color:var(--blue2)">Na Aula 10, combinaremos try/except com while para re-pedir o dado até que seja válido.</p>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Nota validada</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> combinar conversão segura com decisão.</p>
+          <p><b>Tarefa:</b> receber uma nota com input(); se o texto não for número, avisar com try/except; se for, classificar em Aprovado / Recuperação / Reprovado.</p>
+          <p><b>Mobiliza:</b> try/except, ValueError, float(), if/elif/else.</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-shield"/></svg></span><div><h5>Converta dentro do try</h5><p>Somente a linha que pode falhar precisa de proteção.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h5>Mensagem amigável</h5><p>"Digite apenas números" — e não o traceback cru.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h5>Classifique só com dado válido</h5><p>A decisão pode ficar dentro do próprio try, após a conversão.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h5>Teste tudo</h5><p>"abc", 8.5, 6, 4.9 — entradas válidas e inválidas.</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:12px">try:
+    nota = float(input("Nota: "))
+    if nota &gt;= 7:
+        print("Aprovado")
+    elif nota &gt;= 5:
+        print("Recuperação")
+    else:
+        print("Reprovado")
+except ValueError:
+    print("Entrada inválida: digite apenas números.")</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Três categorias</h4><p>Sintaxe, execução e lógica — cada uma com sinais diferentes.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Traceback</h4><p>Leia de baixo para cima: tipo do erro + local.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Técnicas de depuração</h4><p>print de inspeção e teste de mesa.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Valores de fronteira</h4><p>Os limites dos intervalos são os primeiros a testar.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>try / except / ValueError</h4><p>Protegem o programa contra entradas inválidas.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Mentalidade</h4><p>Errar faz parte — depurar é observar, testar e corrigir.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Estruturas de Repetição I: while</b>: repetir sem copiar e colar.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 14</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

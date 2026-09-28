@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 11 · Estruturas de Dados — Listas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="11">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-db"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 11</p>
+    <h1>Estruturas de Dados — Listas</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Criação, acesso, manipulação e iteração de listas — armazenar múltiplos valores em uma única variável. Fundamental para o projeto final.</p>
+    <p class="c-note">Pré-requisito: Aula 10 — Combinação de Estruturas</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Da variável única à coleção de valores.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-db"/></svg></span><div><h4>O que é uma lista?</h4><p>Vários valores em uma única estrutura, ordenados.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h4>Índices</h4><p>Começam em zero — e acessar além do fim gera erro.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Alterar elementos</h4><p>Atribuição por índice.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-plus"/></svg></span><div><h4>append() e remove()</h4><p>Adicionar ao final e remover um valor.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-repeat"/></svg></span><div><h4>Percorrer com for</h4><p>Direto pelos valores, ou pelos índices.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><div><h4>Soma e média</h4><p>len() elimina a contagem manual.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RETOMADA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Retomada</p>
+      <h2 class="h2">E se quisermos guardar todas as notas?</h2>
+    </header>
+    <div class="s-body">
+      <div class="quote">Na Aula 09 calculamos a média de 3 notas. Mas <b>e se quisermos consultá-las novamente depois?</b> Precisamos de uma variável para cada uma?</div>
+      <div class="cols-2" style="margin-top:14px">
+        <div>
+          <span class="code-label">Sem lista — escalável até dar erro</span>
+          <pre class="code">nota1 = <span class="n">8.0</span>
+nota2 = <span class="n">7.5</span>
+nota3 = <span class="n">9.0</span>
+<span class="c"># e se fossem 50 notas?</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Com lista — uma variável, muitos valores</span>
+          <pre class="code">notas = [<span class="n">8.0</span>, <span class="n">7.5</span>, <span class="n">9.0</span>, <span class="n">6.5</span>]</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE É LISTA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">O que é uma lista?</h2>
+      <p class="lead">Uma coleção <b>ordenada</b> de elementos, separados por vírgulas e delimitados por colchetes.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Listas de diferentes tipos</span>
+          <pre class="code">notas = [<span class="n">8.0</span>, <span class="n">7.5</span>, <span class="n">9.0</span>, <span class="n">6.5</span>]
+nomes = [<span class="s">"Ana"</span>, <span class="s">"Bruno"</span>, <span class="s">"Carla"</span>]
+dados = [<span class="s">"Ana"</span>, <span class="n">19</span>, <span class="n">1.68</span>, <span class="k">True</span>]</pre>
+        </div>
+        <div class="card">
+          <h4>Observações</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Uma lista pode misturar tipos (str, int, float, bool…)</li>
+            <li>Mas listas com <b>elementos de mesma finalidade</b> (ex.: só notas) organizam melhor o programa</li>
+            <li>A ordem importa: a lista guarda a posição de cada elemento</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÍNDICES -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Índices: o acesso pela posição</h2>
+      <p class="lead">Em Python, os índices começam em <b>zero</b>.</p>
+    </header>
+    <div class="s-body">
+      <pre class="code" style="max-width:640px;margin:0 auto">índice:      <span class="n">0</span>        <span class="n">1</span>        <span class="n">2</span>
+           +--------+--------+--------+
+nomes   =  | "Ana"  | "Bruno"| "Carla"|
+           +--------+--------+--------+</pre>
+      <div class="cols-2" style="margin-top:14px">
+        <div>
+          <span class="code-label">Acessando</span>
+          <pre class="code"><span class="f">print</span>(nomes[<span class="n">0</span>])   <span class="c"># Ana</span>
+<span class="f">print</span>(nomes[<span class="n">1</span>])   <span class="c"># Bruno</span>
+<span class="f">print</span>(nomes[<span class="n">2</span>])   <span class="c"># Carla</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Índice inexistente = erro</span>
+          <pre class="code"><span class="f">print</span>(nomes[<span class="n">3</span>])   <span class="c"># IndexError!</span></pre>
+          <p style="margin-top:6px;font-size:12.5px;color:var(--mut)">Erro de <b>execução</b> (Aula 07): a lista tem posições 0, 1 e 2 — a 3 não existe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALTERAR + LEN -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceitos 3 e 4</p>
+      <h2 class="h2">Alterar elementos e medir a lista</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Substituir pelo índice</span>
+          <pre class="code">nomes = [<span class="s">"Ana"</span>, <span class="s">"Bruno"</span>, <span class="s">"Carla"</span>]
+
+nomes[<span class="n">1</span>] = <span class="s">"Beatriz"</span>
+
+<span class="f">print</span>(nomes)
+<span class="c"># ['Ana', 'Beatriz', 'Carla']</span></pre>
+        </div>
+        <div>
+          <span class="code-label">len() — quantos elementos?</span>
+          <pre class="code">nomes = [<span class="s">"Ana"</span>, <span class="s">"Bruno"</span>, <span class="s">"Carla"</span>]
+
+<span class="f">print</span>(<span class="f">len</span>(nomes))   <span class="c"># 3</span></pre>
+          <div class="warn" style="margin-top:10px">Com 3 elementos, os índices vão de <b>0 a 2</b> — mas o <b>tamanho é 3</b>. Essa diferença evita o IndexError ao percorrer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPEND / REMOVE -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Adicionar e remover elementos</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">append() — adiciona ao final</span>
+          <pre class="code">nomes = [<span class="s">"Ana"</span>, <span class="s">"Bruno"</span>]
+
+nomes.<span class="f">append</span>(<span class="s">"Carla"</span>)
+
+<span class="f">print</span>(nomes)
+<span class="c"># ['Ana', 'Bruno', 'Carla']</span></pre>
+        </div>
+        <div>
+          <span class="code-label">remove() — primeira ocorrência</span>
+          <pre class="code">nomes = [<span class="s">"Ana"</span>, <span class="s">"Bruno"</span>, <span class="s">"Carla"</span>]
+
+nomes.<span class="f">remove</span>(<span class="s">"Bruno"</span>)
+
+<span class="f">print</span>(nomes)
+<span class="c"># ['Ana', 'Carla']</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">remove() procura pelo <b>valor</b>. Se ele não estiver na lista, gera um erro de execução.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERCORRER -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 6</p>
+      <h2 class="h2">Percorrer uma lista com for</h2>
+      <p class="lead">Duas formas — direto pelos valores, ou pelos índices.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Direto pelos valores</span>
+          <pre class="code"><span class="k">for</span> nome <span class="k">in</span> nomes:
+    <span class="f">print</span>(nome)
+
+<span class="c"># Ana</span>
+<span class="c"># Bruno</span>
+<span class="c"># Carla</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Pelos índices (com a posição)</span>
+          <pre class="code"><span class="k">for</span> i <span class="k">in</span> <span class="f">range</span>(<span class="f">len</span>(nomes)):
+    <span class="f">print</span>(i, nomes[i])
+
+<span class="c"># 0 Ana</span>
+<span class="c"># 1 Bruno</span>
+<span class="c"># 2 Carla</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Use a forma por índices quando precisar <b>da posição</b> além do valor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOMA E MÉDIA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 7</p>
+      <h2 class="h2">Listas numéricas: soma e média</h2>
+      <p class="lead">len() substitui a contagem manual — funciona para qualquer tamanho de lista.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Soma com acumulador</span>
+          <pre class="code">notas = [<span class="n">8.0</span>, <span class="n">7.5</span>, <span class="n">9.0</span>]
+soma = <span class="n">0</span>
+
+<span class="k">for</span> nota <span class="k">in</span> notas:
+    soma += nota
+
+<span class="f">print</span>(<span class="s">"Soma:"</span>, soma)   <span class="c"># 24.5</span></pre>
+        </div>
+        <div>
+          <span class="code-label">Média com len()</span>
+          <pre class="code">media = soma / <span class="f">len</span>(notas)
+<span class="f">print</span>(<span class="s">"Média:"</span>, media)  <span class="c"># 8.166...</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">Adicione 10 notas à lista — o mesmo código continua funcionando, sem alterar nada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Registro de notas</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> listas + repetição + acumulador.</p>
+          <p><b>Tarefa:</b> receber <b>cinco notas</b>, armazená-las em uma lista e exibir todas as notas, a soma e a média.</p>
+          <p><b>Mobiliza:</b> lista vazia, append(), for, range(), acumulador, len(), print().</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-db"/></svg></span><div><h5>Comece com uma lista vazia</h5><p>notas = [] — e cresça com append().</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-repeat"/></svg></span><div><h5>Laço de 5 voltas</h5><p>for i in range(5): cada volta pede uma nota.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-repeat"/></svg></span><div><h5>Segundo laço para a soma</h5><p>Percorra a lista acumulando os valores.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-percent"/></svg></span><div><h5>Média com len()</h5><p>soma / len(notas) — sem escrever "5" no código.</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:12px">Notas: [8.0, 7.0, 9.0, 6.0, 10.0]
+Soma: 40.0
+Média: 8.0</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Listas</h4><p>Vários elementos em uma única estrutura ordenada.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Índices</h4><p>Começam em zero; além do fim gera IndexError.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>len()</h4><p>Retorna a quantidade de elementos.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>append() e remove()</h4><p>Adicionam ao final e removem a primeira ocorrência.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Percorrer com for</h4><p>Pelos valores — ou pelos índices com range(len()).</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Soma e média</h4><p>A base do projeto final: registrar, somar e calcular.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Oficina Integrada e Temas do Projeto Final</b>.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 13</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

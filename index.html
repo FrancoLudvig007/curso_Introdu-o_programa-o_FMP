@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Programação para Iniciantes · FMP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ══════════ BARRA SUPERIOR ══════════ -->
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span> Programação para Iniciantes <em>· FMP · COPER</em></div>
+    <nav class="nav">
+      <button class="nav-btn is-active" data-view="welcome">Início</button>
+      <button class="nav-btn" data-view="salas">Salas de Aula</button>
+      <button class="nav-btn nav-btn--gold" id="open-info">Informações</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ══════════ VISÃO 1 · BOAS-VINDAS ══════════ -->
+    <section class="view is-active" id="view-welcome">
+      <div class="hero">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+        <div class="hero-content">
+          <p class="hero-kicker">Faculdade Municipal de Palhoça · COPER · Edital FMP 16/2026</p>
+          <h1>Programação para<br>Iniciantes</h1>
+          <div class="hero-rule"></div>
+          <p class="hero-lead">
+            Curso de extensão com <b>lógica de programação em Python</b> — do pensamento
+            computacional ao projeto final, em encontros presenciais no laboratório de informática.
+          </p>
+
+          <ul class="hero-stats">
+            <li><b>21h</b> de curso</li>
+            <li><b>14</b> encontros presenciais</li>
+            <li><b>2</b> atividades EAD</li>
+            <li><b>75%</b> frequência p/ certificado</li>
+          </ul>
+
+          <div class="hero-actions">
+            <button class="btn btn-ghost" id="open-info-2">Informações do curso</button>
+            <button class="btn btn-solid" data-view="salas">Salas de Aula →</button>
+          </div>
+
+          <p class="hero-foot">
+            14/10/2026 – 02/12/2026 · Segundas e quartas, 11h10–12h30 · Laboratório de Informática — FMP
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ VISÃO 2 · SALAS DE AULA ══════════ -->
+    <section class="view" id="view-salas">
+      <div class="salas-header">
+        <h2>Salas de Aula</h2>
+        <p>Escolha um card para abrir a apresentação completa do encontro.</p>
+        <div class="search">
+          <input type="text" id="search" placeholder="Buscar aula, tema ou palavra-chave…" autocomplete="off">
+        </div>
+      </div>
+
+      <!-- cards gerados pelo app.js -->
+      <div class="cards" id="cards"></div>
+
+      <p class="salas-note">
+        Datas previstas a partir do Edital FMP 16/2026 (02/11 — Finados — sem encontro).
+        O cronograma oficial disponibilizado pela coordenação prevalece.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ══════════ MODAL · INFORMAÇÕES DO CURSO ══════════ -->
+  <div class="modal" id="modal-info" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" data-close aria-label="Fechar">×</button>
+
+      <p class="modal-kicker">Edital FMP 16/2026 · COPER</p>
+      <h3 id="modal-title">Curso de Extensão em Programação para Iniciantes</h3>
+
+      <div class="modal-grid">
+        <div class="info-block">
+          <h4>📚 O curso</h4>
+          <ul>
+            <li>Carga horária total de <b>21 horas</b> — 14 encontros presenciais + 2 atividades a distância.</li>
+            <li>Período: <b>14 de outubro a 02 de dezembro de 2026</b>.</li>
+            <li>Objetivo: fundamentos da lógica computacional e aplicação de variáveis, operadores, decisões e repetições na construção de algoritmos e na resolução de problemas simples.</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h4>📅 Encontros e local</h4>
+          <ul>
+            <li>Segundas e quartas-feiras, <b>das 11h10 às 12h30</b>.</li>
+            <li>Laboratório de Informática — Faculdade Municipal de Palhoça.</li>
+            <li>R. João Pereira dos Santos, 99 — Ponte do Imaruim, Palhoça/SC.</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h4>👥 Vagas e requisitos</h4>
+          <ul>
+            <li><b>30 vagas</b> — acadêmicos da FMP e comunidade em geral.</li>
+            <li>Conhecimentos básicos de informática e Microsoft Windows.</li>
+            <li>Acesso à internet e dispositivo eletrônico compatível.</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h4>🎓 Certificação</h4>
+          <ul>
+            <li>Frequência mínima de <b>75%</b> nos encontros presenciais.</li>
+            <li>Entrega das atividades previstas.</li>
+            <li>Certificado emitido pela <b>COPER/FMP</b> — vale como horas complementares para acadêmicos.</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h4>✅ Presença e matrícula</h4>
+          <ul>
+            <li>Falta injustificada nos <b>2 primeiros encontros</b> → desligamento.</li>
+            <li>Lista de espera convocada em caso de desistência.</li>
+            <li>Matrícula realizada pela COPER a partir do formulário de inscrição.</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h4>📞 Contato</h4>
+          <ul>
+            <li>contato@fmpsc.edu.br</li>
+            <li>(48) 3220-0376</li>
+            <li>Instagram: @faculdademunicipaldepalhoca</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

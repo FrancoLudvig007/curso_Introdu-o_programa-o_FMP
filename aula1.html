@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 01 · Introdução à Programação e ao Pensamento Computacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="1">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-python"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 01</p>
+    <h1>Introdução à Programação e ao Pensamento Computacional</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Antes de escrever a primeira linha de código, vamos entender como um computador
+      pensa — e por que a lógica vem antes da linguagem.</p>
+    <p class="c-note">Foco do curso: lógica de programação com Python</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Um roteiro simples: do "o que é um computador" até "por que aprender Python".</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 50 min</span><span class="gold">Fechamento · 15 min</span><span class="gold">Dúvidas · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h4>Programação e pensamento computacional</h4><p>O que significa programar e como organizar o raciocínio antes do código.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-cpu"/></svg></span><div><h4>Hardware × Software</h4><p>As duas metades de todo sistema computacional.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-layers"/></svg></span><div><h4>Como o computador processa informação</h4><p>Entrada → Processamento → Saída, e o papel da memória.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h4>Binário e hexadecimal</h4><p>Como tudo, no fundo, vira 0 e 1.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-terminal"/></svg></span><div><h4>Dos circuitos ao código</h4><p>Por que existem linguagens como Python — e por que isso ajuda.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Fechamento</h4><p>Resumo do essencial e o que vem a seguir: lógica de programação.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 1 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">O que é programação?</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <p style="font-size:15.5px;line-height:1.6">Programar é <b>descrever, passo a passo, como um computador deve executar uma tarefa</b>.</p>
+          <p style="margin:12px 0 4px;font-size:13.5px;color:var(--mut)">Programar não é só aprender uma linguagem. Antes dela existe a capacidade de:</p>
+          <ul class="b">
+            <li>Entender o problema e dividi-lo em partes menores</li>
+            <li>Definir uma sequência de passos</li>
+            <li>Estabelecer condições e identificar repetições</li>
+            <li>Representar dados e transformar tudo em instruções executáveis</li>
+          </ul>
+        </div>
+        <div class="card dark">
+          <p style="margin-bottom:6px">Você pensa:</p>
+          <p style="font-size:16.5px;font-style:italic">"Quero calcular a média de 3 notas."</p>
+          <hr style="border:none;border-top:2px dashed rgba(255,255,255,.4);margin:10px 0">
+          <p style="margin-bottom:6px">O computador precisa de:</p>
+          <ul class="b">
+            <li>Receber nota 1, 2 e 3</li>
+            <li>Somar as três notas</li>
+            <li>Dividir o total por 3</li>
+            <li>Exibir o resultado</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px">"O computador é extremamente rápido, mas essencialmente <b>literal</b>: ele faz exatamente o que foi escrito — <b>nem mais, nem menos</b>."</div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 2 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Pensamento computacional</h2>
+      <p class="lead">Uma forma estruturada de analisar problemas antes de escrever qualquer código.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-grid"/></svg></span><div><h4>Decomposição</h4><p>Dividir um problema grande em partes menores e mais simples de resolver.</p></div></div>
+        <div class="card dark card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-eye"/></svg></span><div><h4>Reconhecimento de padrões</h4><p>Perceber comportamentos ou estruturas que se repetem.</p></div></div>
+        <div class="card card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-layers"/></svg></span><div><h4>Abstração</h4><p>Focar no que é relevante agora e ignorar detalhes desnecessários.</p></div></div>
+        <div class="card dark card-flex"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h4>Algoritmo</h4><p>Organizar uma sequência ordenada de passos para chegar à solução.</p></div></div>
+      </div>
+      <p class="quote" style="margin-top:14px">Antes de programar, é preciso <b>saber exatamente o que queremos que o programa faça</b>.</p>
+    </div>
+  </section>
+
+  <!-- CONCEITO 3 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Hardware × Software</h2>
+      <p class="lead">Todo sistema computacional é a soma dessas duas metades.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card">
+          <div class="card-flex" style="margin-bottom:8px"><span class="ic-dot"><svg class="ic"><use href="#i-monitor"/></svg></span><div><h4>Hardware</h4><p>A parte física do sistema.</p></div></div>
+          <ul class="b">
+            <li>CPU e memória RAM · SSD/HDD e placa-mãe</li>
+            <li>GPU · teclado, mouse e monitor</li>
+            <li>Dispositivos de rede</li>
+          </ul>
+          <p style="margin-top:10px;font-size:12.5px;font-style:italic;color:var(--mut)">"Aquilo que se chuta quando dá problema" — brincadeira, mas ajuda a lembrar.</p>
+        </div>
+        <div class="card dark">
+          <div class="card-flex" style="margin-bottom:8px"><span class="ic-dot"><svg class="ic"><use href="#i-terminal"/></svg></span><div><h4>Software</h4><p>Programas, instruções e dados que orientam o hardware.</p></div></div>
+          <p><b>Firmware</b> — BIOS/UEFI: inicializa o hardware</p>
+          <p><b>Sistema Operacional</b> — Windows, Linux, macOS, Android</p>
+          <p><b>Utilitários</b> — compactadores, antivírus, gerenciadores</p>
+          <p><b>Aplicativos</b> — navegador, editores, jogos</p>
+          <p style="margin-top:10px;font-size:12.5px;font-style:italic;color:rgba(255,255,255,.6)">"Aquilo que se xinga quando trava."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 4 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Como o computador processa informação</h2>
+      <p class="lead">O modelo de Von Neumann, simplificado: tudo o que um sistema faz cabe em três etapas.</p>
+    </header>
+    <div class="s-body">
+      <div class="flow">
+        <div class="fbox"><h4>ENTRADA</h4><p>Teclado, mouse, sensores, arquivos, rede</p></div>
+        <div class="farr"><svg class="ic"><use href="#i-forward"/></svg></div>
+        <div class="fbox mid"><h4>PROCESSAMENTO</h4><p>A CPU executa operações sobre os dados recebidos</p></div>
+        <div class="farr"><svg class="ic"><use href="#i-forward"/></svg></div>
+        <div class="fbox"><h4>SAÍDA</h4><p>Monitor, impressora, arquivo, rede</p></div>
+      </div>
+      <div class="card" style="margin-top:16px"><p><b>E a memória?</b> No modelo de Von Neumann, dados e instruções ficam numa memória comum — a CPU busca ambos durante a execução.</p></div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 5 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Tudo vira 0 e 1: o sistema binário</h2>
+      <p class="lead">Circuitos eletrônicos só reconhecem dois estados — por isso tudo é representado em binário.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <div class="card" style="margin-bottom:12px">
+            <p><b>Decimal:</b> 10 símbolos — <code class="inl">0 1 2 3 4 5 6 7 8 9</code></p>
+            <p style="margin-top:6px"><b>Binário:</b> 2 símbolos — <code class="inl">0 1</code> (ligado / desligado)</p>
+          </div>
+          <div class="card dark">
+            <p><b>Bit</b> — menor unidade de informação (0 ou 1)</p>
+            <p><b>Byte</b> — conjunto de 8 bits</p>
+            <p style="margin-top:6px">Bits e bytes representam números, caracteres e qualquer outro dado.</p>
+          </div>
+        </div>
+        <div class="card">
+          <span class="code-label">Convertendo binário → decimal</span>
+          <pre class="code">  1   0   1   1
+  ×   ×   ×   ×
+  8   4   2   1
+─────────────────
+  8 + 0 + 2 + 1  =  11</pre>
+          <p style="margin-top:10px;text-align:center;font-size:18px"><b>1011<sub>2</sub> = 11<sub>10</sub></b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 6 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 6</p>
+      <h2 class="h2">Hexadecimal: binário de forma compacta</h2>
+      <p class="lead">Sequências binárias longas são pouco práticas para humanos — o hexadecimal resolve isso.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <div class="card" style="margin-bottom:12px">
+            <p><b>16 símbolos:</b> <code class="inl">0–9</code> e <code class="inl">A B C D E F</code></p>
+            <p style="margin-top:6px">A=10 · B=11 · C=12 · D=13 · E=14 · F=15</p>
+            <p style="margin-top:6px">Cada dígito hexadecimal representa exatamente <b>4 bits</b>.</p>
+          </div>
+          <div class="card dark">
+            <pre class="code">Binário:       1010 1111
+Hexadecimal:     A    F</pre>
+            <p style="margin-top:8px;text-align:center;font-size:17px"><b>1010 1111<sub>2</sub> = AF<sub>16</sub></b></p>
+          </div>
+        </div>
+        <div class="card">
+          <span class="code-label">Onde aparece no dia a dia</span>
+          <ul class="b">
+            <li>Endereços de memória</li>
+            <li>Depuração de programas (debugging)</li>
+            <li>Programação de baixo nível</li>
+            <li>Representação de bytes e identificadores técnicos</li>
+            <li>Cores em design — <code class="inl">#AF00FF</code>, por exemplo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 7 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 7</p>
+      <h2 class="h2">Dos circuitos ao código que escrevemos</h2>
+      <p class="lead">Linguagens de programação existem para reduzir a distância entre o hardware e a nossa lógica.</p>
+    </header>
+    <div class="s-body">
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h4>Instruções de máquina</h4><p>Bits ligados e desligados que a CPU compreende: 010010 011110…</p></div>
+        <span class="step-dot"></span>
+        <div class="step alt"><div class="n">02</div><h4>Baixo nível — Assembly</h4><p>Mnemônicos: <b>mov eax, 10</b> · <b>add eax, 20</b></p></div>
+        <span class="step-dot"></span>
+        <div class="step"><div class="n">03</div><h4>Médio nível</h4><p>C, C++ e Rust: abstração com controle do hardware.</p></div>
+        <span class="step-dot"></span>
+        <div class="step alt"><div class="n">04</div><h4>Alto nível</h4><p>Python, JavaScript e Lua: próximos da linguagem humana.</p></div>
+      </div>
+      <p class="quote" style="margin-top:16px">Quanto mais alto o nível, <b>menos detalhes de hardware</b> — e mais perto da lógica que queremos expressar.</p>
+    </div>
+  </section>
+
+  <!-- PYTHON -->
+  <section class="slide dark">
+    <header class="s-head">
+      <p class="kicker">Por que este curso usa Python</p>
+      <h2 class="h2">Python: alto nível, foco na lógica</h2>
+      <p class="lead" style="color:#b9c7dc">O código Python não roda "ao pé da letra" na CPU — um interpretador traduz cada instrução.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card dark">
+          <pre class="code">print("Olá, mundo!")</pre>
+          <p style="margin-top:10px;font-size:12.5px">Por baixo dessa linha simples existem várias camadas:</p>
+          <div class="agenda" style="margin-top:8px">
+            <span style="background:var(--gold);color:#1b2743;font-weight:700">Python</span><span>Runtime</span><span>Sistema Operacional</span><span>Instruções de máquina</span><span>CPU e memória</span>
+          </div>
+        </div>
+        <div class="card dark">
+          <h4 style="color:var(--gold);font-size:15.5px">Vantagens para quem está começando</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Sintaxe próxima da linguagem humana</li>
+            <li>Menos detalhes técnicos para se preocupar de início</li>
+            <li>Ideal para focar em lógica, não na verbosidade</li>
+            <li>Muito usado no mercado: web, dados, automação</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Programação</h4><p>Construir instruções claras para resolver problemas.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Pensamento computacional</h4><p>Decomposição, padrões, abstração e algoritmos.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Hardware e Software</h4><p>A parte física e o conjunto de instruções que a comandam.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Entrada → Processamento → Saída</h4><p>O ciclo básico de qualquer sistema computacional.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Binário e hexadecimal</h4><p>Como a informação é representada dentro da máquina.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Níveis de abstração</h4><p>Da máquina ao Python — cada nível aproxima da lógica humana.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Lógica de Programação</b>: transformar um pedido vago em passos organizados.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 10</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

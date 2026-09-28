@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 12 · Oficina Integrada e Temas do Projeto Final</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="12">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-star"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 12</p>
+    <h1>Oficina Integrada e Temas do Projeto Final</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Resolução de problemas integrados aplicando I/O, decisão, repetição e listas — com a definição dos três temas limitantes do projeto.</p>
+    <p class="c-note">Pré-requisito: Aula 11 — Listas · Temas também guiam as Aulas 13 e 14</p>
+  </section>
+
+  <!-- SLIDE ÚNICO: TEMAS + OFICINA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Projeto Final · Escolha 1 dos 3 temas</p>
+      <h2 class="h2">Temas limitantes e oficina de integração</h2>
+      <p class="lead">Todo o percurso do curso — I/O, decisão, repetição e listas — aplicado a um problema real. Hoje: planejar e começar. Aula 13: desenvolver. Aula 14: apresentar.</p>
+    </header>
+    <div class="s-body">
+
+      <div class="cols-3">
+        <!-- TEMA 1 -->
+        <div class="card dark panel-gold" style="display:flex;flex-direction:column">
+          <div class="card-flex" style="margin-bottom:8px"><span class="ic-dot"><svg class="ic"><use href="#i-user"/></svg></span><div><h4>Tema 1 · Calculadora de IMC</h4><p style="color:rgba(255,255,255,.6)">Saúde — classificação corporal</p></div></div>
+          <p><b>Entrada:</b> nome, peso (kg) e altura (m) — com validação.</p>
+          <p><b>Processamento:</b> imc = peso / altura ** 2.</p>
+          <p><b>Saída:</b> valor + classificação por faixas — abaixo de 18.5 (magreza), 18.5–24.9 (normal), 25–29.9 (sobrepeso), 30–34.9 (obesidade I), 35–39.9 (obesidade II), 40 ou mais (obesidade III).</p>
+          <p style="margin-top:auto;padding-top:8px"><b style="color:var(--gold)">Conceitos:</b> float, **, if/elif encadeado, validação, f-string.</p>
+        </div>
+
+        <!-- TEMA 2 -->
+        <div class="card dark panel-gold" style="display:flex;flex-direction:column">
+          <div class="card-flex" style="margin-bottom:8px"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h4>Tema 2 · RPG em modo texto</h4><p style="color:rgba(255,255,255,.6)">Jogo — batalha por turnos</p></div></div>
+          <p><b>Herói e inimigo</b> com pontos de vida; batalha em <b>turnos</b> (while): atacar, defender ou usar poção do <b>inventário</b> (lista com quantidade).</p>
+          <p>A cada turno, exibir o status dos dois lados; vencer zerar a vida do oponente.</p>
+          <p style="margin-top:auto;padding-top:8px"><b style="color:var(--gold)">Conceitos:</b> while, if/elif, listas (inventário), acumuladores, f-string.</p>
+        </div>
+
+        <!-- TEMA 3 -->
+        <div class="card dark panel-gold" style="display:flex;flex-direction:column">
+          <div class="card-flex" style="margin-bottom:8px"><span class="ic-dot"><svg class="ic"><use href="#i-card"/></svg></span><div><h4>Tema 3 · Reservas de restaurante</h4><p style="color:rgba(255,255,255,.6)">Sistema — gestão de mesas</p></div></div>
+          <p><b>Menu:</b> reservar / alterar reserva / cancelar / ver mapa / sair (while + if/elif).</p>
+          <p><b>Mesas em listas:</b> capacidade e localidade — perto da janela, parte central do salão ou perto do WC.</p>
+          <p>Reservar = informar pessoas + preferência de local → <b>buscar</b> mesa livre compatível (for + if).</p>
+          <p style="margin-top:auto;padding-top:8px"><b style="color:var(--gold)">Conceitos:</b> listas paralelas, for, while, menu, validação.</p>
+        </div>
+      </div>
+
+      <!-- dinâmica da oficina -->
+      <div class="card" style="margin-top:14px">
+        <div class="card-flex">
+          <span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span>
+          <div>
+            <h4>Dinâmica de hoje (oficina de exercícios integrados)</h4>
+            <p><b>1.</b> Escolha o tema (individual ou em dupla) → <b>2.</b> Planeje no papel: entrada → processamento → saída, listando as funções mínimas → <b>3.</b> Comece o protótipo: primeiros input() e print() funcionando. Na Aula 13 o desenvolvimento continua com acompanhamento; na Aula 14, apresentação e avaliação.</p>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:12px;text-align:center;font-size:13px;font-style:italic;color:var(--blue2)">Regra de ouro do projeto: um programa simples e funcionando vale mais que um ambicioso e quebrado.</p>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Projeto Final: Planejamento e Desenvolvimento</b>.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 3</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

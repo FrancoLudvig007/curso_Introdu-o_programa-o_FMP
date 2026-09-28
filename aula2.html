@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 02 · Lógica de Programação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="2">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-sitemap"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 02</p>
+    <h1>Lógica de Programação</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">De um problema mal definido até uma sequência de passos organizada — e como representar
+      esse raciocínio visualmente antes de escrever a primeira linha em Python.</p>
+    <p class="c-note">Pré-requisito: Aula 01 — Introdução à Programação</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Do problema à representação visual: o caminho completo antes de programar de verdade.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 45 min</span><span class="gold">Prática visual · 20 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-search"/></svg></span><div><h4>Da necessidade ao problema</h4><p>Transformar um pedido vago em algo que dá para resolver.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-bulb"/></svg></span><div><h4>Pensar logicamente</h4><p>Uma estratégia de 5 passos para organizar qualquer solução.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-grid"/></svg></span><div><h4>Decomposição</h4><p>Dividir o problema grande em tarefas pequenas e simples.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h4>Algoritmo (uma prévia)</h4><p>O que é, e por que trabalharemos direto com Python.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-sitemap"/></svg></span><div><h4>Fluxogramas</h4><p>Representar visualmente um processo antes do código.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-table"/></svg></span><div><h4>Exemplo prático</h4><p>Média de 3 notas para 3 alunos, do fluxograma à tabela.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 1 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">Da necessidade ao problema</h2>
+      <p class="lead">Programar começa antes de abrir uma IDE: começa por entender qual problema precisa ser resolvido.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card">
+          <p style="font-style:italic;font-size:16px">"Calcular as médias da turma."</p>
+          <p style="margin:8px 0 4px;font-size:12px;font-weight:700;color:var(--mut)">PERGUNTAS QUE ESCLARECEM O PEDIDO</p>
+          <ul class="b">
+            <li>Quantos alunos serão avaliados?</li>
+            <li>Quantas notas cada aluno possui?</li>
+            <li>Como a média será calculada?</li>
+            <li>O que deve ser apresentado ao final?</li>
+          </ul>
+        </div>
+        <div class="card dark">
+          <p style="color:var(--gold);font-weight:700;font-size:12px;letter-spacing:.1em">PROBLEMA DESTA AULA</p>
+          <p style="margin-top:8px;font-size:15.5px;line-height:1.6">Uma turma tem <b>3 alunos</b>. Cada aluno possui <b>3 notas</b>.<br>Precisamos calcular e mostrar a média de cada um.</p>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px">Um problema mal definido gera um programa que resolve a coisa errada — <b>mesmo que o código esteja "correto"</b>.</div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 2 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Pensar logicamente para resolver</h2>
+      <p class="lead">Organizar ações de maneira coerente: o que acontece primeiro, que dados são necessários, como chegar ao resultado.</p>
+    </header>
+    <div class="s-body">
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h4>Entender</h4><p>Identificar o que foi pedido.</p></div>
+        <span class="step-dot"></span>
+        <div class="step alt"><div class="n">02</div><h4>Identificar dados</h4><p>Descobrir quais informações serão necessárias.</p></div>
+        <span class="step-dot"></span>
+        <div class="step"><div class="n">03</div><h4>Definir o resultado</h4><p>Determinar o que deve ser produzido.</p></div>
+        <span class="step-dot"></span>
+        <div class="step alt"><div class="n">04</div><h4>Planejar</h4><p>Organizar as ações em ordem coerente.</p></div>
+        <span class="step-dot"></span>
+        <div class="step"><div class="n">05</div><h4>Conferir</h4><p>Verificar se o plano resolve o problema.</p></div>
+      </div>
+      <p class="quote" style="margin-top:16px">Essa sequência funciona para qualquer problema — <b>da média de notas ao sistema mais complexo</b>.</p>
+    </div>
+  </section>
+
+  <!-- CONCEITO 3 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Decomposição: dividir para conquistar</h2>
+      <p class="lead">Um problema grande pode ser dividido em tarefas menores. Cada etapa é simples; juntas, resolvem o problema completo.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card dark">
+          <h4 style="color:var(--gold)">Problema grande → tarefas menores</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Obter as três notas do aluno</li>
+            <li>Somar as notas</li>
+            <li>Dividir a soma por 3</li>
+            <li>Apresentar a média</li>
+            <li>Repetir para os demais alunos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Por que dividir ajuda?</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Cada tarefa pequena é mais fácil de entender e testar</li>
+            <li>Erros ficam mais fáceis de localizar</li>
+            <li>A tarefa "calcular 1 média" só precisa ser pensada uma vez</li>
+            <li>É a base para, mais adiante, usar repetições no código</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 4 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Algoritmo: uma prévia</h2>
+      <p class="lead">Um algoritmo é uma <b style="color:var(--ink)">sequência finita de passos, organizados logicamente, com a finalidade de chegar a uma solução</b>.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card dark">
+          <h4 style="color:var(--gold)">Exemplo: média de 3 notas</h4>
+          <ol style="margin:8px 0 0 20px;font-size:14px;line-height:2;color:rgba(255,255,255,.88)">
+            <li>Receber três notas</li>
+            <li>Somar as notas</li>
+            <li>Dividir a soma por três</li>
+            <li>Mostrar a média</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h4>Todo algoritmo precisa ter:</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Passos compreensíveis</li>
+            <li>Ordem coerente entre os passos</li>
+            <li>Um ponto de término</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12.5px;font-style:italic;color:var(--mut)">Veremos algoritmos com mais profundidade na próxima aula.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECISÃO DO CURSO -->
+  <section class="slide dark">
+    <header class="s-head">
+      <p class="kicker">Uma decisão do curso</p>
+      <h2 class="h2">Por que não usar Portugol e VisualG?</h2>
+      <p class="lead" style="color:#b9c7dc">Em muitos cursos, a lógica começa com pseudocódigo em Portugol — praticado na ferramenta VisualG.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card dark">
+          <h4 style="color:#9db4d0">O problema de usar Portugol primeiro</h4>
+          <p style="margin-top:6px">Com a carga horária curta, aprender uma linguagem didática e depois migrar para outra exigiria tempo adicional de adaptação.</p>
+          <p style="margin-top:10px;font-size:12.5px;font-style:italic;color:rgba(255,255,255,.6)">Portugol e VisualG não são inúteis — são recursos didáticos válidos; apenas não serão a ferramenta deste curso.</p>
+        </div>
+        <div class="card dark" style="border:1px solid rgba(242,194,48,.35)">
+          <h4 style="color:var(--gold)">Por que ir direto ao Python</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Fundamentos praticados na linguagem real do curso</li>
+            <li>Python é usado em automação, análise de dados e desenvolvimento</li>
+            <li>Um só caminho de aprendizado, sem etapa de tradução extra</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px">"A lógica não pertence a uma linguagem específica. O mesmo raciocínio pode ser representado em <b>fluxograma, Portugol, Python, C</b> ou outras."</div>
+    </div>
+  </section>
+
+  <!-- CONEXÃO AULA 1 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conexão com a Aula 01</p>
+      <h2 class="h2">O computador continua sendo literal</h2>
+      <p class="lead">O computador não interpreta nossa intenção: executa instruções conforme foram definidas.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div class="card">
+          <p style="font-size:12px;color:var(--mut)">Suficiente para uma pessoa:</p>
+          <p style="margin-top:6px;font-style:italic;font-size:19px">"Calcule a média."</p>
+        </div>
+        <div class="card dark">
+          <p style="font-size:12px;color:rgba(255,255,255,.65)">Um programa precisa de instruções explícitas:</p>
+          <p style="margin-top:6px;font-size:15px;font-weight:500">Quais valores? Qual operação? Quantas vezes? Como mostrar?</p>
+        </div>
+      </div>
+      <div class="agenda" style="margin-top:14px">
+        <span>Quais valores utilizar</span><span>Qual operação realizar</span><span>Quantas vezes executar</span><span>Como apresentar o resultado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEITO 5 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 5</p>
+      <h2 class="h2">Fluxogramas: os símbolos principais</h2>
+      <p class="lead">Um fluxograma representa visualmente as etapas de um processo, por meio de símbolos conectados por setas.</p>
+    </header>
+    <div class="s-body">
+      <table class="t">
+        <tr><th style="width:120px">Símbolo</th><th>Nome</th><th>Significado</th><th>Uso</th></tr>
+        <tr><td><span style="display:inline-block;width:64px;height:24px;border-radius:50%;background:var(--blue)"></span></td><td><b>Oval / terminador</b></td><td>Início ou fim</td><td>Marca os limites do processo</td></tr>
+        <tr><td><span style="display:inline-block;width:60px;height:22px;background:var(--blue);transform:skewX(-14deg)"></span></td><td><b>Paralelogramo</b></td><td>Entrada ou saída</td><td>Ler dados ou apresentar resultados</td></tr>
+        <tr><td><span style="display:inline-block;width:60px;height:22px;background:var(--blue)"></span></td><td><b>Retângulo</b></td><td>Processamento</td><td>Calcular ou atribuir valores</td></tr>
+        <tr><td><span style="display:inline-block;width:24px;height:24px;background:var(--blue);transform:rotate(45deg)"></span></td><td><b>Losango</b></td><td>Decisão</td><td>Avaliar uma condição e escolher um caminho</td></tr>
+      </table>
+      <p style="margin-top:12px;font-size:13px;font-style:italic;color:var(--blue2)">A seta indica o fluxo: a sequência das etapas do início ao fim.</p>
+    </div>
+  </section>
+
+  <!-- CONCEITO 6 -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 6</p>
+      <h2 class="h2">O fluxo básico de um processo</h2>
+      <p class="lead">Nem todo algoritmo precisa de decisão — mas quase todos seguem esta espinha dorsal.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2" style="align-items:center">
+        <div class="vflow">
+          <div class="vf terminator">INÍCIO</div><div class="varr"></div>
+          <div class="vf">ENTRADA</div><div class="varr"></div>
+          <div class="vf process">PROCESSAMENTO</div><div class="varr"></div>
+          <div class="vf">SAÍDA</div><div class="varr"></div>
+          <div class="vf terminator">FIM</div>
+        </div>
+        <div class="card">
+          <h4>Exemplo aplicado</h4>
+          <ul class="b" style="margin-top:6px">
+            <li>Início do programa</li>
+            <li>Ler as 3 notas</li>
+            <li>Calcular a média</li>
+            <li>Mostrar a média</li>
+            <li>Fim do programa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXEMPLO PRÁTICO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exemplo prático</p>
+      <h2 class="h2">Média de 3 notas para 3 alunos</h2>
+      <p class="lead">O mesmo procedimento se repete três vezes — ainda sem estruturas de repetição formais.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-3" style="margin-bottom:14px">
+        <div class="card"><h4>Aluno 1</h4><p>Ler notas: 7, 8, 9 → calcular média = soma / 3 → mostrar média</p></div>
+        <div class="card dark"><h4 style="color:var(--gold)">Aluno 2</h4><p>Ler notas: 6, 7, 8 → calcular média = soma / 3 → mostrar média</p></div>
+        <div class="card"><h4>Aluno 3</h4><p>Ler notas: 5, 6, 7 → calcular média = soma / 3 → mostrar média</p></div>
+      </div>
+      <table class="t big">
+        <tr><th>Aluno</th><th>Nota 1</th><th>Nota 2</th><th>Nota 3</th><th class="hl">Média</th></tr>
+        <tr><td>1</td><td>7</td><td>8</td><td>9</td><td class="hl">8,0</td></tr>
+        <tr><td>2</td><td>6</td><td>7</td><td>8</td><td class="hl">7,0</td></tr>
+        <tr><td>3</td><td>5</td><td>6</td><td>7</td><td class="hl">6,0</td></tr>
+      </table>
+      <p style="margin-top:12px;text-align:center;font-size:13px;font-style:italic;color:var(--blue2)">Mesma lógica, dados diferentes — mais adiante, estruturas de repetição evitarão essa repetição manual.</p>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Compreender antes de programar</h4><p>Resolver começa por entender o problema de verdade.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Dados e resultado esperado</h4><p>Identificados antes de qualquer solução.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Decomposição</h4><p>Dividir em tarefas menores facilita a solução.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Algoritmo</h4><p>Organiza passos finitos numa sequência lógica.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Fluxogramas</h4><p>Representam visualmente um processo antes do código.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Python direto</h4><p>A lógica vale para qualquer linguagem — sem etapa em Portugol.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Algoritmos e Apresentação do Python</b>.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 11</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>

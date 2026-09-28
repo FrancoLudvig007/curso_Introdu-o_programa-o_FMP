@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aula 08 · Estruturas de Repetição I — while</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="aulas.css">
+</head>
+<body data-aula="8">
+
+<div class="progress"><i id="pbar"></i></div>
+<a class="home" href="index.html">← Salas de aula</a>
+
+<div class="deck"><div class="stage" id="stage">
+
+  <!-- CAPA -->
+  <section class="slide dark cover">
+    <div class="orb o1"></div><div class="orb o2"></div>
+    <div class="cover-ico"><svg class="ic"><use href="#i-repeat"/></svg></div>
+    <p class="kicker">Curso de Extensão · Programação para Iniciantes</p>
+    <p class="c-num">Aula 08</p>
+    <h1>Estruturas de Repetição I — while</h1>
+    <div class="c-rule"></div>
+    <p class="c-sub">Repetir instruções enquanto uma condição for verdadeira: contadores, acumuladores e prevenção de loops infinitos.</p>
+    <p class="c-note">Pré-requisito: Aula 07 — Depuração e Tratamento de Erros</p>
+  </section>
+
+  <!-- ROTEIRO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Antes de começar</p>
+      <h2 class="h2">O que vamos ver hoje</h2>
+      <p class="lead">Do copiar-e-colar à repetição inteligente.</p>
+    </header>
+    <div class="s-body">
+      <div class="agenda"><span>Retomada · 5 min</span><span>Conceitos · 40 min</span><span class="gold">Exercício · 25 min</span><span class="gold">Fechamento · 10 min</span></div>
+      <div class="toc">
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-repeat"/></svg></span><div><h4>Por que repetir?</h4><p>Repetir a senha errada sem reescrever o código.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-list"/></svg></span><div><h4>Anatomia do while</h4><p>Condição verificada antes de cada execução.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h4>Contadores e +=</h4><p>A variável de controle que caminha para o fim.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-alert"/></svg></span><div><h4>Loops infinitos</h4><p>Os três elementos que impedem o laço de travar.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-box"/></svg></span><div><h4>Acumuladores</h4><p>Guardando resultados progressivos.</p></div></div>
+        <div class="tcard"><span class="ic-dot"><svg class="ic"><use href="#i-edit"/></svg></span><div><h4>Exercício: tentativas de senha</h4><p>Laço + contador + decisão.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE REPETIR -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Retomada</p>
+      <h2 class="h2">Por que precisamos repetir?</h2>
+    </header>
+    <div class="s-body">
+      <div class="quote">Com <b>if</b>, o programa decide <b>se</b> executa um bloco. Mas como pedir uma senha <b>novamente</b> quando ela está errada — sem escrever as mesmas instruções várias vezes?</div>
+      <div class="cols-2" style="margin-top:14px">
+        <div>
+          <span class="code-label">Sem repetição 😖</span>
+          <pre class="code"><span class="f">print</span>(<span class="s">"Olá"</span>)
+<span class="f">print</span>(<span class="s">"Olá"</span>)
+<span class="f">print</span>(<span class="s">"Olá"</span>)</pre>
+        </div>
+        <div>
+          <span class="code-label">Com repetição 😎</span>
+          <pre class="code">contador = <span class="n">0</span>
+<span class="k">while</span> contador &lt; <span class="n">3</span>:
+    <span class="f">print</span>(<span class="s">"Olá"</span>)
+    contador = contador + <span class="n">1</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANATOMIA -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 1</p>
+      <h2 class="h2">Anatomia do while</h2>
+      <p class="lead">A condição é verificada <b>antes de cada execução</b> do bloco. Se for falsa de início, o bloco nunca roda.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Contando de 1 a 5</span>
+          <pre class="code">contador = <span class="n">1</span>
+
+<span class="k">while</span> contador &lt;= <span class="n">5</span>:
+    <span class="f">print</span>(contador)
+    contador = contador + <span class="n">1</span></pre>
+        </div>
+        <div class="card">
+          <h4>Os seis passos do laço</h4>
+          <ol style="margin:6px 0 0 20px;font-size:13.5px;line-height:1.9;color:var(--txt)">
+            <li><code class="inl">contador</code> começa em 1</li>
+            <li>Verifica <code class="inl">contador &lt;= 5</code></li>
+            <li>Verdadeira → executa o bloco</li>
+            <li>Contador é incrementado</li>
+            <li>Condição verificada novamente</li>
+            <li>Falsa → o laço termina</li>
+          </ol>
+        </div>
+      </div>
+      <table class="t big" style="margin-top:12px">
+        <tr><th>Iteração</th><th>Contador antes do print</th><th>Condição</th></tr>
+        <tr><td>1</td><td>1</td><td>Verdadeira</td></tr>
+        <tr><td>2</td><td>2</td><td>Verdadeira</td></tr>
+        <tr><td>3</td><td>3</td><td>Verdadeira</td></tr>
+        <tr><td>4</td><td>4</td><td>Verdadeira</td></tr>
+        <tr><td>5</td><td>5</td><td>Verdadeira</td></tr>
+        <tr><td>Encerramento</td><td>6</td><td class="hl">Falsa</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- += E CONTADOR -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 2</p>
+      <h2 class="h2">Contadores e o operador +=</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">As duas escritas são equivalentes</span>
+          <pre class="code">contador = contador + <span class="n">1</span>
+contador += <span class="n">1</span></pre>
+        </div>
+        <div class="card">
+          <h4>O contador pode caminhar nos dois sentidos</h4>
+          <ul class="b" style="margin-top:6px">
+            <li><b>Sobe</b>: contando repetições (1, 2, 3…)</li>
+            <li><b>Desce</b>: contagem regressiva (10, 9, 8…)</li>
+            <li>Pode avançar de 2 em 2, de 5 em 5…</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">O que importa: a variável de controle <b>muda</b> a cada volta, aproximando a condição do fim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOP INFINITO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Cuidado</p>
+      <h2 class="h2">Laço infinito: quando o fim nunca chega</h2>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Errado — contador nunca muda</span>
+          <pre class="code">contador = <span class="n">1</span>
+
+<span class="k">while</span> contador &lt;= <span class="n">3</span>:
+    <span class="f">print</span>(contador)
+    <span class="c"># faltou o contador += 1 !</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)">A condição permanece verdadeira para sempre — o programa "trava" imprimindo 1. Para sair: Ctrl + C.</p>
+        </div>
+        <div>
+          <span class="code-label">Correto</span>
+          <pre class="code">contador = <span class="n">1</span>
+
+<span class="k">while</span> contador &lt;= <span class="n">3</span>:
+    <span class="f">print</span>(contador)
+    contador += <span class="n">1</span>   <span class="c"># caminha para o fim</span></pre>
+        </div>
+      </div>
+      <div class="warn" style="margin-top:14px">Todo while precisa dos <b>três elementos</b>: <b>1.</b> valor inicial · <b>2.</b> condição de continuidade · <b>3.</b> atualização da variável de controle.</div>
+      <p style="margin-top:10px;font-size:13px;font-style:italic;color:var(--blue2)">Pergunta: se o contador começa em 1 e a condição é contador &lt; 1, o bloco é executado alguma vez?</p>
+    </div>
+  </section>
+
+  <!-- WHILE COM INPUT -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 3</p>
+      <h2 class="h2">Entrada controlada por while</h2>
+      <p class="lead">Repetir uma solicitação até que o usuário informe um valor válido.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Python</span>
+          <pre class="code">senha = <span class="f">input</span>(<span class="s">"Digite a senha: "</span>)
+
+<span class="k">while</span> senha != <span class="s">"python123"</span>:
+    <span class="f">print</span>(<span class="s">"Senha incorreta"</span>)
+    senha = <span class="f">input</span>(<span class="s">"Tente novamente: "</span>)
+
+<span class="f">print</span>(<span class="s">"Acesso autorizado"</span>)</pre>
+        </div>
+        <div class="card">
+          <h4>Fluxo</h4>
+          <pre class="code" style="margin-top:6px">Solicita senha
+     |
+Senha correta? --Não--&gt; solicita
+     |                  novamente
+     Sim                (loop)
+     |
+Acesso autorizado</pre>
+          <div class="warn" style="margin-top:8px">A variável <b>senha</b> precisa receber um <b>novo valor dentro do laço</b> — senão a condição nunca muda (loop infinito!).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACUMULADOR -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Conceito 4</p>
+      <h2 class="h2">Acumuladores</h2>
+      <p class="lead">Um acumulador guarda um resultado que é atualizado a cada repetição.</p>
+    </header>
+    <div class="s-body">
+      <div class="cols-2">
+        <div>
+          <span class="code-label">Somar 1 + 2 + 3 + 4 + 5</span>
+          <pre class="code">contador = <span class="n">1</span>
+soma = <span class="n">0</span>
+
+<span class="k">while</span> contador &lt;= <span class="n">5</span>:
+    soma = soma + contador
+    contador += <span class="n">1</span>
+
+<span class="f">print</span>(<span class="s">"Soma:"</span>, soma)   <span class="c"># 15</span></pre>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--mut)"><b>contador</b> controla quantas voltas · <b>soma</b> acumula os valores.</p>
+        </div>
+        <div>
+          <span class="code-label">Acompanhando a execução</span>
+          <table class="t">
+            <tr><th>Contador</th><th>Soma antes</th><th>Soma depois</th></tr>
+            <tr><td>1</td><td>0</td><td>1</td></tr>
+            <tr><td>2</td><td>1</td><td>3</td></tr>
+            <tr><td>3</td><td>3</td><td>6</td></tr>
+            <tr><td>4</td><td>6</td><td>10</td></tr>
+            <tr><td>5</td><td>10</td><td class="hl">15</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXERCÍCIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Exercício de fixação</p>
+      <h2 class="h2">Tentativas de senha</h2>
+    </header>
+    <div class="s-body">
+      <div class="ex">
+        <div class="ex-brief">
+          <h4>O desafio</h4>
+          <p><b>Tema:</b> controlar um laço com contador, condição e decisão.</p>
+          <p><b>Tarefa:</b> solicitar uma senha permitindo até <b>3 tentativas</b>. Se correta: "Acesso autorizado". Se as três falharem: "Acesso bloqueado".</p>
+          <p><b>Mobiliza:</b> while, contador, comparação, if/else.</p>
+        </div>
+        <div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-target"/></svg></span><div><h5>Defina quando o laço continua</h5><p>Enquanto houver tentativas E a senha estiver errada.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-hash"/></svg></span><div><h5>Crie o contador de tentativas</h5><p>Começa em 1 e sobe a cada erro.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-zap"/></svg></span><div><h5>Encerre ao acertar</h5><p>A condição do while também depende da senha correta.</p></div></div>
+          <div class="ri"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h5>Teste os dois finais</h5><p>Acerto na 2ª tentativa — e três erros seguidos.</p></div></div>
+          <pre class="code" style="margin-top:9px;font-size:11.5px">Digite a senha: teste
+Senha incorreta
+Digite a senha: abc
+Senha incorreta
+Digite a senha: python123
+Acesso autorizado</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMÁRIO -->
+  <section class="slide">
+    <header class="s-head">
+      <p class="kicker">Fechamento</p>
+      <h2 class="h2">O que levamos desta aula</h2>
+    </header>
+    <div class="s-body">
+      <div class="sum">
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>while</h4><p>Repete enquanto a condição for verdadeira.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Condição de encerramento</h4><p>Todo laço precisa de uma saída alcançável.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Contadores</h4><p>Controlam quantas repetições ocorreram.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Acumuladores</h4><p>Guardam resultados progressivos (somatórios).</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Loops infinitos</h4><p>Ocorrem quando a condição nunca se torna falsa.</p></div></div>
+        <div class="sc"><span class="ic-dot"><svg class="ic"><use href="#i-check"/></svg></span><div><h4>Três elementos</h4><p>Valor inicial + condição + atualização.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENCERRAMENTO -->
+  <section class="slide dark bye">
+    <div class="orb o1" style="width:440px;height:440px;background:#2e5079;top:-180px;left:-150px"></div>
+    <div class="orb o2" style="width:340px;height:340px;background:#24405f;bottom:-140px;right:-100px"></div>
+    <span class="bye-ico"><svg class="ic"><use href="#i-check"/></svg></span>
+    <h2>Obrigado pela presença.</h2>
+    <p>Nos vemos na próxima aula — <b style="color:var(--gold)">Estruturas de Repetição II: for e range()</b>.</p>
+  </section>
+
+</div></div>
+
+<nav class="ctrl">
+  <button id="prev" aria-label="Anterior">‹</button>
+  <span id="cnt">01 / 12</span>
+  <button id="next" aria-label="Próximo">›</button>
+</nav>
+<p class="hint">← → navegar · F tela cheia · Esc volta ao portal</p>
+
+<script src="aulas.js"></script>
+</body>
+</html>
